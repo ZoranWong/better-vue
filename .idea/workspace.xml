@@ -2,35 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="30f4558f-db82-47c0-95bd-e99a7caf4e48" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/better-vue.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/R_User_Library.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/create.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/underscore/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/underscore/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/underscore/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/underscore/underscore-min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/underscore/underscore-min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/underscore/underscore.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Application.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/commands/Command.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/exceptions/ExceptionHandler.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/middlewares/Middleware.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mocks/Mock.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/Model.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/providers/ServiceProvider.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/requests/FormRequest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/responses/Response.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/Route.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/HttpService.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/Service.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/transformers/Transformer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -117,7 +90,11 @@
       </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="29">
+              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -161,6 +138,7 @@
         <option value="$PROJECT_DIR$/src/responses/Response.js" />
         <option value="$PROJECT_DIR$/src/requests/FormRequest.js" />
         <option value="$PROJECT_DIR$/src/services/HttpService.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -230,22 +208,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1575594937159</updated>
-      <workItem from="1575594939915" duration="16359000" />
+      <workItem from="1575594939915" duration="16476000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16359000" />
+    <option name="totallyTimeSpent" value="16476000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="145" y="66" width="1810" height="1034" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24971494" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24971494" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" />
-      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.18675353" />
+      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.18675353" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -374,6 +353,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="174" column="17" lean-forward="true" selection-start-line="174" selection-start-column="17" selection-end-line="174" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
