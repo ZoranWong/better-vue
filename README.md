@@ -1,4 +1,4 @@
-# 安装
+## 安装
 ```
 // 非vue脚手架项目
 npm install better-vue vue
@@ -6,7 +6,7 @@ npm install better-vue vue
 npm  install better-vue
 ```
 
-#使用说明
+## 使用说明
 - ####概念
     * 容器
     * 服务

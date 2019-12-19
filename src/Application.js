@@ -1,4 +1,8 @@
 import _ from 'underscore';
+
+/**
+ * 应用容器类型
+ * */
 export default class Application {
     _instances = {};
     _serviceProviders = [];
@@ -69,17 +73,32 @@ export default class Application {
         return instance;
     }
 
+    async loader (classPath) {
+        return await import(classPath);
+    }
+
     // 注册配置
     registerConfig (name, config) {
         this.register('config.' + name, config);
     }
 
+    registerProvider (provider) {
+        this._serviceProviders.push(new provider(this));
+    }
+
     // 注册服务提供者
     registerServiceProviders () {
         if (!Application._globalProviderRegistered) {
-            _.each(this._config['app']['providers'], (value, key) => {
-                let serviceProvider = this._serviceProviders[key] = new value(this);
-                serviceProvider.register();
+            _.each(this._config['app']['providers'], async (value, key) => {
+                let provider = value;
+                if (_.isString(value)) {
+                    provider = await import(value);
+                    provider = new provider(this);
+                } else {
+                    provider = new value(this);
+                }
+                this._serviceProviders[key] = provider;
+                provider.register();
             });
             Application._globalProviderRegistered = true;
         }
