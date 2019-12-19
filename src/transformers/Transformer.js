@@ -1,4 +1,5 @@
 export default class Transformer {
-    transform () {
+    transform (data) {
+        return data;
     }
 }

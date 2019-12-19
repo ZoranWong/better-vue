@@ -1,8 +1,8 @@
 export default class ExceptionHandler {
-    _application = null;
+    _app = null;
     _exception = null;
     constructor (app, exception) {
-        this._application = app;
+        this._app = app;
         this._exception = exception;
     }
     handle (message, type) {

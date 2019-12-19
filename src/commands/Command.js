@@ -1,8 +1,8 @@
 export default class Command {
-    _application = null;
+    _app = null;
 
     constructor (application) {
-        this._application = application;
+        this._app = application;
     }
     handle (...params) {
     }

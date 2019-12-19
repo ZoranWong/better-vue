@@ -1,4 +1,6 @@
 import _ from 'underscore';
+import {isClass} from "../utils/helpers";
+
 export default class Pipeline {
     _container = null;
     _passable = null;
@@ -24,33 +26,34 @@ export default class Pipeline {
         return this;
     }
 
-    then (destination) {
-        let pipeline;
+    async then (destination) {
+        let pipeline = this._pipes.reverse().reduce(this._carry(), this._prepareDestination(destination));
+        return await pipeline(this._passable);
     }
 
-    thenReturn () {
-        return this.then((passable) => {
+    async thenReturn () {
+        return await this.then((passable) => {
             return passable;
         });
     }
 
     _prepareDestination (destination) {
-        return (passable) => {
-            return destination(passable);
+        return async (passable) => {
+            return await destination(passable);
         }
     }
 
     _carry () {
-        return (stack, pipe) => {
-            return (passable) => {
-                if (_.isFunction(pipe)) {
-                    return pipe(passable, stack);
+        return async (stack, pipe) => {
+            return async (passable) => {
+                if (_.isFunction(pipe) && !isClass(pipe)) {
+                    return await pipe(passable, stack);
                 } else if (_.isString(pipe)) {
                     pipe = this._container[pipe];
-                } else {
+                } else if(isClass(pipe)){
                     pipe = new pipe();
                 }
-                return pipe.hasOwnProperty(this._method) ? pipe[this._method](passable, stack) : null;
+                return pipe.hasOwnProperty(this._method) ? await pipe[this._method](passable, stack) : null;
             }
         }
     }

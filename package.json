@@ -7,6 +7,14 @@
         "test": "better test",
         "better create": "node ./bin/create.js"
     },
+    "babel": {
+        "presets": [
+            "@babel/env"
+        ],
+        "plugins": [
+            "@babel/plugin-proposal-class-properties"
+        ]
+    },
     "keywords": [
         "vue",
         "wechat",
@@ -17,5 +25,17 @@
     "license": "MIT",
     "dependencies": {
         "underscore": "^1.9.1"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.7.7",
+        "@babel/core": "^7.7.7",
+        "@babel/node": "^7.7.4",
+        "@babel/plugin-proposal-class-properties": "^7.7.4",
+        "@babel/polyfill": "^7.7.0",
+        "@babel/preset-env": "^7.7.7",
+        "babel-loader": "^8.0.6",
+        "babel-plugin-transform-class-properties": "^6.24.1",
+        "babel-preset-es2015": "^6.24.1",
+        "esm": "^3.2.25"
     }
 }

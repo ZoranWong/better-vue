@@ -1,7 +1,8 @@
 export default class ServiceProvider {
-    constructor () {
+    _app = null;
+    constructor (application) {
+        this._app = application;
     }
-
     register () {
     }
     boot () {

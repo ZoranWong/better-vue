@@ -77,7 +77,7 @@ export default class Application {
     // 注册服务提供者
     registerServiceProviders () {
         if (!Application._globalProviderRegistered) {
-            _.each(ServiceProviders, (value, key) => {
+            _.each(this._config['app']['providers'], (value, key) => {
                 let serviceProvider = this._serviceProviders[key] = new value(this);
                 serviceProvider.register();
             });
