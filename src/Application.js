@@ -73,8 +73,18 @@ export default class Application {
         return instance;
     }
 
-    async loader (classPath) {
-        return await import(classPath);
+    async loader (paths) {
+        if (_.isString(paths)) {
+            paths = [paths];
+        }
+        let length = paths.length;
+        let classes = {};
+        for (let i = 0; i < length; i++) {
+            let result = await import(paths[i]);
+            let cl = (typeof result['default'] !== 'undefined' ? result['default'] : result);
+            classes[cl.name] = cl;
+        }
+        return classes;
     }
 
     // 注册配置
@@ -92,7 +102,7 @@ export default class Application {
             _.each(this._config['app']['providers'], async (value, key) => {
                 let provider = value;
                 if (_.isString(value)) {
-                    provider = await import(value);
+                    provider = await this.loader(value);
                     provider = new provider(this);
                 } else {
                     provider = new value(this);

@@ -63,7 +63,7 @@ export default class HttpService extends Service {
         this._exception.throw(message);
     }
 
-    async request (request, response) {
+    async send (request, response) {
         this._middleware(request.middlewares);
         if (!this._httpClient && this._httpAdapter) {
             if (isClass(this._httpAdapter)) {
