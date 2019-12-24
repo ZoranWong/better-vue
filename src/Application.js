@@ -20,31 +20,38 @@ export default class Application {
     static _instanceContainer = {};
     static _pageContainer = {};
 
-    constructor() {
+    constructor () {
     }
 
-    needMock() {
+    needMock () {
         return this._config['app']['mock'];
     }
 
-    registerCommand(name, command) {
+    registerCommand (name, command) {
         return Application._commandContainer[name] = command;
     }
 
-    modelComputed(model, key) {
-        if(_.isFunction(model[key])){
+    modelComputed (model, key) {
+        if (!_.isFunction(model[key])) {
+            Object.defineProperty(model, key, {
+                get () {
 
+                },
+                set (value) {
+
+                }
+            })
         }
     }
 
 
-    registerModel(name, model) {
+    registerModel (name, model) {
         let modelInstance = Application._modelContainer[name] = new model(this);
         modelInstance.alias = name;
         let computed = modelInstance.computed();
         if (typeof this[name] === 'undefined') {
             this.register(name, {
-                dispatch(event, data) {
+                dispatch (event, data) {
                     modelInstance.dispatch(event, data);
                 }
             });
@@ -53,7 +60,7 @@ export default class Application {
             Object.defineProperty(this[name], key, {
                 readonly: true,
                 enumerable: true,
-                get() {
+                get () {
                     return '';
                     // return app['stores'][app.currentRoute].getters[name + '/' + key];
                 }
@@ -61,7 +68,7 @@ export default class Application {
         }
     }
 
-    async command(...params) {
+    async command (...params) {
         try {
             let command = params.shift();
             command = Application._commandContainer[command];
@@ -73,7 +80,7 @@ export default class Application {
     }
 
     // 实例化注册对象
-    _instanceRegister(instance) {
+    _instanceRegister (instance) {
         if (_.isFunction(instance)) {
             instance = new instance(this);
         }
@@ -95,16 +102,16 @@ export default class Application {
     }
 
     // 注册配置
-    registerConfig(name, config) {
+    registerConfig (name, config) {
         this.register('config.' + name, config);
     }
 
-    registerProvider(provider) {
+    registerProvider (provider) {
         this._serviceProviders.push(new provider(this));
     }
 
     // 注册服务提供者
-    registerServiceProviders() {
+    registerServiceProviders () {
         if (!Application._globalProviderRegistered) {
             _.each(this._config['app']['providers'], async (value, key) => {
                 let provider = value;
@@ -121,19 +128,19 @@ export default class Application {
         }
     }
 
-    boot() {
+    boot () {
         _.each(this._serviceProviders, function (serviceProvider) {
             serviceProvider.boot();
         })
     }
 
     //注册异常函数
-    registerException(name, exception) {
+    registerException (name, exception) {
         this._exceptionHandlers[name] = exception;
     }
 
     // application扩展
-    extend(dist, src, deep) {
+    extend (dist, src, deep) {
         for (let key in src) {
             if (src.hasOwnProperty(key)) {
                 let value = src[key];
@@ -149,7 +156,7 @@ export default class Application {
         }
     }
 
-    register(name, service = null) {
+    register (name, service = null) {
         let instance = null;
         if (!service && _.isFunction(name)) {
             instance = this[name] = Application._instanceContainer[name] = this._instanceRegister(name);
@@ -178,10 +185,10 @@ export default class Application {
         return instance;
     }
 
-    _addModels(models) {
+    _addModels (models) {
     }
 
-    run(before = null, after = null) {
+    run (before = null, after = null) {
         this._instances = {};
         this.registerServiceProviders();
         if (before) {
@@ -196,11 +203,11 @@ export default class Application {
         }
     }
 
-    _models() {
+    _models () {
         return null;
     }
 
-    _createPage(created) {
+    _createPage (created) {
         if (this._route) {
             let wxRoute = this._config['routes'][this._route];
             let store = this['stores'][this._route] = this._models();
