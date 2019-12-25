@@ -31,14 +31,18 @@ export default class Application {
         return Application._commandContainer[name] = command;
     }
 
-    modelComputed (model, key) {
-        if (!_.isFunction(model[key])) {
+    _reConstructModel (model, key) {
+        if (!_.isFunction(model[key]) && model.isChildProperty(key)) {
+            model.state[key] = model[key];
+            model.getters[key] = (state) => {
+                return state[key];
+            };
+            model.addEventListener(key, (payload, state) => {
+                state[key] = payload[key];
+            });
             Object.defineProperty(model, key, {
-                get () {
-
-                },
                 set (value) {
-
+                    model.dispatch(key, value);
                 }
             })
         }
@@ -48,23 +52,8 @@ export default class Application {
     registerModel (name, model) {
         let modelInstance = Application._modelContainer[name] = new model(this);
         modelInstance.alias = name;
-        let computed = modelInstance.computed();
-        if (typeof this[name] === 'undefined') {
-            this.register(name, {
-                dispatch (event, data) {
-                    modelInstance.dispatch(event, data);
-                }
-            });
-        }
-        for (let key in computed) {
-            Object.defineProperty(this[name], key, {
-                readonly: true,
-                enumerable: true,
-                get () {
-                    return '';
-                    // return app['stores'][app.currentRoute].getters[name + '/' + key];
-                }
-            })
+        for (let key in model) {
+            this._reConstructModel(model, key);
         }
     }
 
@@ -104,10 +93,12 @@ export default class Application {
     // 注册配置
     registerConfig (name, config) {
         this.register('config.' + name, config);
+        return this;
     }
 
     registerProvider (provider) {
         this._serviceProviders.push(new provider(this));
+        return this;
     }
 
     // 注册服务提供者
