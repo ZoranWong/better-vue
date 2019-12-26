@@ -92,7 +92,7 @@ export default class Application {
 
     // 注册配置
     registerConfig (name, config) {
-        this.register('config.' + name, config);
+        this.register(`config.${name}`, config);
         return this;
     }
 
@@ -108,15 +108,17 @@ export default class Application {
                 let provider = value;
                 if (_.isString(value)) {
                     provider = await this.loader(value);
-                    provider = new provider(this);
                 } else {
-                    provider = new value(this);
+                    provider = value;
                 }
-                this._serviceProviders[key] = provider;
-                provider.register();
+                this.registerProvider(provider);
             });
             Application._globalProviderRegistered = true;
         }
+
+        this._serviceProviders.forEach((provider) => {
+            provider.register();
+        });
     }
 
     boot () {
