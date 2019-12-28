@@ -4,12 +4,12 @@ export default class Model {
     actions = {};
     mutations = {};
 
-    constructor () {
+    constructor() {
     }
 
     // 回调函数可以直接使用this指向注册model实例，回调函数接受两个参数一个payload结构体，一个model层的state
     // 对应vuex中的actions与mutations
-    addEventListener (type, callback) {
+    addEventListener(type, callback) {
         this.actions[type] = ({commit}, payload) => {
             commit(type, payload);
         };
@@ -20,10 +20,13 @@ export default class Model {
         }
     }
 
-    isChildProperty (key) {
+    dispatch(key, value) {
+    }
+
+    isChildProperty(key) {
         if (key !== 'state' && key !== 'actions' && key !== 'mutations' && key !== 'getters') {
             return true;
-        }else{
+        } else {
             return false;
         }
     }

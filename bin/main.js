@@ -1,0 +1,11 @@
+import Application from 'src/Application';
+import app from 'configs/app';
+import CreateServiceCommand from "./commands/CreateServiceCommand";
+import CreateServiceProviderCommand from "./commands/CreateServiceProviderCommand";
+import CreateModelCommand from "./commands/CreateModelCommand";
+var application = new Application();
+application.registerConfig('app', app);
+application.registerCommand('service:create', CreateServiceCommand);
+application.registerCommand('provider:create', CreateServiceProviderCommand);
+application.registerCommand('model:create', CreateModelCommand);
+export default application;
