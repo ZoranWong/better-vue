@@ -1,5 +1,10 @@
-import Model from "../../src/models/Model";
+import Command from "./NodeCommand";
 
-export default class CreateModelCommand extends Model{
-
+export default class CreateModelCommand extends Command{
+    _options = {
+        dir: {
+            desc: '',
+            default: ''
+        }
+    };
 }

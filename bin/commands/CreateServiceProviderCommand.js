@@ -1,4 +1,4 @@
-import Command from "../../src/commands/Command";
+import Command from "./NodeCommand";
 
 export default class CreateServiceProviderCommand extends Command{
 

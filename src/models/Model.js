@@ -1,10 +1,17 @@
+import Request from '../requests/FormRequest';
+import Store from 'vuex';
 export default class Model {
+    modelName = '';
     state = {};
     getters = {};
     actions = {};
     mutations = {};
-
-    constructor() {
+    /**@type {Request}*/
+    _request = null;
+    /**@type {Store}*/
+    _store = null;
+    constructor(request) {
+        this._request = request;
     }
 
     // 回调函数可以直接使用this指向注册model实例，回调函数接受两个参数一个payload结构体，一个model层的state
@@ -29,5 +36,9 @@ export default class Model {
         } else {
             return false;
         }
+    }
+
+    get(key) {
+        return this._store.getters[`${this.modelName}/${key}`];
     }
 }

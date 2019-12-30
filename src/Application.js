@@ -1,9 +1,13 @@
 import {isArray, isFunction, isString, each, extend} from 'underscore';
-import Model from 'models/Model';
-import Command from "commands/Command";
-import ServiceProvider from "providers/ServiceProvider";
+import Model from './models/Model';
+import Command from "./commands/Command";
+import ServiceProvider from "./providers/ServiceProvider";
 import {Store} from "vuex";
 import Vue from 'vue';
+import {ComponentOptions} from 'vue'
+import Service from "./services/Service";
+import Collection from "./models/Collection";
+import {collectionProxy} from "./utils/helpers";
 
 /**
  * 应用容器类型
@@ -14,13 +18,15 @@ export default class Application {
     _serviceProviders = [];
     _config = {};
     _exceptionHandlers = {};
-    _env = {};
+    _template = {};
     _route = null;
     _multiplePage = false;
     _registeredGlobal = true;
 
     /**@type {Vue}*/
     _current = null;
+
+    /**@type {ComponentOptions}*/
     _mountComponent = null;
     /**@type {Object.<string, Command>} _commandContainer*/
     static _commandContainer = {};
@@ -51,7 +57,7 @@ export default class Application {
 
     /**
      *@param {Model} model
-     *@param {string} key
+     *@param {string|any} key
      * @return
      * */
     _reConstructModel(model, key) {
@@ -66,6 +72,9 @@ export default class Application {
             Object.defineProperty(model, key, {
                 set(value) {
                     model.dispatch(key, value);
+                },
+                get() {
+                    return model.get(key);
                 }
             })
         }
@@ -79,11 +88,16 @@ export default class Application {
      * */
     registerModel(name, model) {
         let modelInstance = Application._modelContainer[name] = new model(this);
-        modelInstance.alias = name;
-        this._store.registerModule < model > (name, modelInstance);
-        for (let key in model) {
-            this._reConstructModel(model, key);
+        if (modelInstance instanceof Collection) {
+            modelInstance = collectionProxy(modelInstance);
+            this.register(`$model.${name}`, modelInstance);
+        } else {
+            this.register(`$model.${name}`, modelInstance);
         }
+        this._store.registerModule(name, modelInstance);
+        each(modelInstance, (property, key) => {
+            this._reConstructModel(modelInstance, key);
+        });
         return this;
     }
 
@@ -99,6 +113,7 @@ export default class Application {
             command = new command(this);
             return await command.handle(...params);
         } catch (e) {
+            console.log(e);
             return false;
         }
     }
@@ -251,6 +266,11 @@ export default class Application {
     _addModels(models) {
     }
 
+    setTemplate(template) {
+        this._template = template;
+        return this;
+    }
+
     /**
      * @param {function} before
      * @param {function} after
@@ -263,11 +283,7 @@ export default class Application {
             before.call(this, this);
         }
         this._addModels(Application._modelContainer);
-        if (this._multiplePage) {
-            this._createPage(after);
-        } else if (after) {
-            after.call(this, this);
-        }
+        after.call(this, this);
     }
 
     _models() {
@@ -275,34 +291,5 @@ export default class Application {
     }
 
     _createPage(created) {
-        if (this._route) {
-            let wxRoute = this._config['routes'][this._route];
-            let store = this['stores'][this._route] = this._models();
-            this._mountComponent = extend({
-                store: store,
-                render: h => h(App),
-                mounted: () => {
-                }
-            }, this._mountComponent);
-            let mounted = this._mountComponent.mounted;
-            let self = this;
-            this._mountComponent.mounted = function () {
-                mounted && mounted.call(this);
-                self._current = this;
-            }
-            if (isFunction(created)) {
-                created.call(this, this);
-            }
-            this._current.$mount();
-            this._current['wxRoute'] = wxRoute;
-            extend(this._current, this._instances);
-            each(this._instances, (instance) => {
-                if (instance instanceof Service) {
-                    instance['page'] = this._current;
-                }
-            });
-            Application._pageContainer[wxRoute] = (this._current);
-        }
-        return this._current;
     }
 }
