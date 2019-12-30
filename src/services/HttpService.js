@@ -18,9 +18,9 @@ export default class HttpService extends Service {
     _validator = null;
     _exception = null;
 
-    constructor (application, client, host) {
+    constructor (application, adapter, host) {
         super(application);
-        this._httpClient = client;
+        this._httpAdapter = adapter;
         this._host = host;
         this._middlewarePipeline = new Pipeline(application);
         this._config['host'] = this.host;

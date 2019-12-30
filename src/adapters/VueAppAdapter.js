@@ -1,4 +1,4 @@
-import AppAdapter from "./AppAdapter";
+import AppAdapter from "../contracts/AppAdapter";
 import {ComponentOptions} from 'vue';
 import Vue from 'vue';
 import {Store} from 'vuex';

@@ -7,7 +7,7 @@ import Vue from 'vue';
 import {VueConstructor} from 'vue'
 import Collection from "./models/Collection";
 import {collectionProxy} from "./utils/helpers";
-import AppAdapter from './adapters/AppAdapter';
+import AppAdapter from './contracts/AppAdapter';
 import Route from "./routes/Route"
 
 /**
