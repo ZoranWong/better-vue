@@ -7,6 +7,6 @@ import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios);
 export default class HttpServiceProvider extends ServiceProvider {
     register () {
-        this._app.register('$httpClient', ()=> new HttpService(this._app, Vue.axois, this._app._apiGateway))
+        this._app.register('$httpClient', ()=> new HttpService(this._app, Vue.axios, this._app._apiGateway))
     }
 }
