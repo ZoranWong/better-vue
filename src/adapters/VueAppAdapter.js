@@ -40,14 +40,6 @@ export default class VueAppAdapter extends AppAdapter {
         super(component, application, route);
         this.mixin(application._instances);
         this.mixin(application._mixinMethods);
-        /**@type {ComponentOptions}*/
-        let data = {
-            store: store,
-            render: h => h(component),
-            mounted: () => {
-            }
-        };
-        this._mountComponent = extend(data, this._mountComponent);
         this._created = this._mountComponent.created;
         this._mounted = this._mountComponent.mounted;
         this._beforeMount = this._mountComponent.beforeMount;
@@ -57,8 +49,16 @@ export default class VueAppAdapter extends AppAdapter {
         this._beforeDestroy = this._mountComponent.beforeDestroy;
         this._destroyed = this._mountComponent.destroyed;
         this._mountComponent = this.rebuildComponent();
-        this._page = vue(this._mountComponent);
-        this._page.$mount(id);
+        this._page = vue({
+            store,
+            render: h => h(this._mountComponent)
+        });
+        if (id) {
+            this._page.$mount(id);
+        } else {
+            this._page.$mount();
+        }
+
         this._page['$adapter'] = this;
         extend(this._page, application._instances);
     }

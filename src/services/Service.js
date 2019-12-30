@@ -1,7 +1,12 @@
+import Application from '../Application';
 export default class Service {
-    _application = null;
+    /**@type {Application}*/
+    _app = null;
 
+    /**
+    * @param {Application} application
+    * */
     constructor (application) {
-        this._application = application;
+        this._app = application;
     }
 }

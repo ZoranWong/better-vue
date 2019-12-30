@@ -45,11 +45,18 @@ export default class Application {
     /**@type {Store}*/
     _store = null;
 
+    _apiGateway = null;
+
     constructor () {
     }
 
     needMock () {
         return this._config['app']['mock'];
+    }
+
+    setApiGateway (gateway) {
+        this._apiGateway = gateway;
+        return this;
     }
 
     /**
@@ -59,6 +66,11 @@ export default class Application {
      * */
     registerCommand (name, command) {
         return Application._commandContainer[name] = command;
+    }
+
+    setAdapter (adapterClass) {
+        this._adapterClass = adapterClass;
+        return this;
     }
 
     /**
@@ -277,12 +289,9 @@ export default class Application {
     run (before = null, after = null) {
         this._instances = {};
         this.registerServiceProviders();
-        if (before) {
-            this._registeredGlobal = false;
-            before.call(this, this);
-        }
-        this._addModels(Application._modelContainer);
-        after.call(this, this);
+        this._registeredGlobal = false;
+        before && before.call(this, this);
+        after && after.call(this, this);
     }
 
     /**
@@ -290,10 +299,10 @@ export default class Application {
      * @param {string|null} id
      * */
     createPage (mountComponent, create, id = null) {
-        create = create instanceof VueConstructor ? (component) => new create(component) : create;
         /**@type {AppAdapter}*/
         let adapter = new this._adapterClass(mountComponent, this._store, this._route, create, this, id);
         Application._pageContainer.push(adapter)
+        return this;
     }
 
     currentPage () {
@@ -301,5 +310,21 @@ export default class Application {
         return Application._pageContainer.some((adapter) => {
             return adapter.isCurrentPage(this._currentRoute);
         })
+    }
+
+    mixins (mixins) {
+        each(mixins, (m, k) => {
+            this.mixin(k, m);
+        });
+        return this;
+    }
+
+    /**
+     * @param {string} key
+     * @param {Function} method
+     * */
+    mixin (key, method) {
+        this._mixinMethods[key] = method;
+        this[key] = method;
     }
 }
