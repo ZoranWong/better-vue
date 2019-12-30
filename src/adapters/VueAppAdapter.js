@@ -3,11 +3,13 @@ import {ComponentOptions} from 'vue';
 import Vue from 'vue';
 import {Store} from 'vuex';
 import {extend} from 'underscore';
+import Route from '../routes/Route';
+import Application from '../Application';
 
 export default class VueAppAdapter extends AppAdapter {
     /**@type {Vue}*/
     _page = null;
-    _route = null;
+
     /**@type {Function}*/
     _mounted = null;
     /**@type {Function}*/
@@ -25,16 +27,19 @@ export default class VueAppAdapter extends AppAdapter {
     /**@type {Function}*/
     _beforeDestroy = null;
 
+
     /**
      * @param {ComponentOptions} component
      * @param {Store} store
-     * @param {string} route
-     * @param {Class| function(component){}} vue
-     * @param {Object} instances
+     * @param {Route} route
+     * @param {function(component){}} vue
+     * @param {Application} application
      * @param {string|null} id
      * */
-    constructor(component, store, route, vue, instances, id = null) {
-        super(component);
+    constructor (component, store, route, vue, application, id = null) {
+        super(component, application, route);
+        this.mixin(application._instances);
+        this.mixin(application._mixinMethods);
         /**@type {ComponentOptions}*/
         let data = {
             store: store,
@@ -54,71 +59,74 @@ export default class VueAppAdapter extends AppAdapter {
         this._mountComponent = this.rebuildComponent();
         this._page = vue(this._mountComponent);
         this._page.$mount(id);
-        this._route = route;
         this._page['$adapter'] = this;
-        extend(this._page, instances);
+        extend(this._page, application._instances);
     }
 
-    rebuildComponent() {
+    rebuildComponent () {
         let adapter = this;
         return extend(this._mountComponent, {
-            beforeCreate() {
+            beforeCreate () {
                 adapter.beforeCreate();
             },
-            created() {
+            created () {
                 adapter.created(this);
             },
-            beforeMount() {
+            beforeMount () {
                 adapter.beforeMount(this);
             },
-            mounted() {
+            mounted () {
                 adapter.mounted(this);
             },
-            beforeUpdate() {
+            beforeUpdate () {
                 adapter.beforeUpdate(this);
             },
-            updated() {
+            updated () {
                 adapter.updated(this);
             },
-            beforeDestroy() {
+            beforeDestroy () {
                 adapter.beforeDestroy(this);
             },
-            destroyed() {
+            destroyed () {
                 adapter.destroyed(this);
             }
         });
     }
 
-    beforeMount(vue) {
+    beforeMount (vue) {
         this._beforeMount && this._beforeMount.call(vue);
     }
 
-    mounted(vue) {
+    mounted (vue) {
         this._mounted && this._mounted.call(vue);
     }
 
-    beforeCreate() {
+    beforeCreate () {
         this._beforeCreate && this._beforeCreate.call();
     }
 
-    created(vue) {
+    created (vue) {
         this._page = vue;
         this._created && this._created.call(vue);
     }
 
-    beforeUpdate(vue) {
+    beforeUpdate (vue) {
         this._beforeUpdate && this._beforeUpdate.call(vue);
     }
 
-    updated(vue) {
+    updated (vue) {
         this._updated && this._updated.call(vue);
     }
 
-    beforeDestroy(vue) {
+    beforeDestroy (vue) {
         this._beforeDestroy && this.beforeDestroy.call(vue)
     }
 
-    destroyed(vue) {
+    destroyed (vue) {
         this._destroyed && this._destroyed.call(vue);
+    }
+
+    mixin (mixins) {
+        Vue.mixin(mixins);
     }
 }
