@@ -39,7 +39,7 @@ export default class VueAppAdapter extends AppAdapter {
     constructor (component, store, route, vue, application, id = null) {
         super(component, application, route);
         this.mixin(application._instances);
-        this.mixin(application._mixinMethods);
+        this.mixin({methods: application._mixinMethods});
         this._created = this._mountComponent.created;
         this._mounted = this._mountComponent.mounted;
         this._beforeMount = this._mountComponent.beforeMount;
@@ -127,6 +127,7 @@ export default class VueAppAdapter extends AppAdapter {
     }
 
     mixin (mixins) {
+        console.log(mixins);
         Vue.mixin(mixins);
     }
 }

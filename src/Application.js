@@ -298,6 +298,7 @@ export default class Application {
         this.registerServiceProviders();
         this._registeredGlobal = false;
         before && before.call(this, this);
+        this.boot();
         after && after.call(this, this);
     }
 
