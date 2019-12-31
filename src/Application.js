@@ -43,7 +43,7 @@ export default class Application {
     /**@type {[AppAdapter]}*/
     static _pageContainer = [];
     /**@type {Store}*/
-    _store = null;
+    $store = null;
 
     _apiGateway = null;
 
@@ -119,7 +119,7 @@ export default class Application {
         } else {
             this.register(`$model.${name}`, modelInstance);
         }
-        this._store.registerModule(name, modelInstance);
+        this.$store.registerModule(name, modelInstance);
         each(modelInstance, (property, key) => {
             this._reConstructModel(modelInstance, key);
         });
@@ -180,7 +180,7 @@ export default class Application {
      * @return {Application}
      * */
     registerConfig (name, config) {
-        this.register(`config.${name}`, config);
+        this.register(`_config.${name}`, config);
         return this;
     }
 
@@ -308,7 +308,7 @@ export default class Application {
      * */
     createPage (mountComponent, create, id = null) {
         /**@type {AppAdapter}*/
-        let adapter = new this._adapterClass(mountComponent, this._store, this._route, create, this, id);
+        let adapter = new this._adapterClass(mountComponent, this.$store, this._route, create, this, id);
         Application._pageContainer.push(adapter)
         return this;
     }
