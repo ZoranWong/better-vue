@@ -3,7 +3,9 @@
     "version": "0.0.1",
     "description": "better way to use vue framework to create app, web, and wechat miniprogram ",
     "main": "src/main.js",
-    "files":["src/"],
+    "files": [
+        "src/"
+    ],
     "scripts": {
         "test": "better test",
         "better create": "node ./bin/create.js"
@@ -43,13 +45,16 @@
         "@babel/plugin-transform-object-super": "^7.7.4",
         "@babel/polyfill": "^7.7.0",
         "@babel/preset-env": "^7.7.7",
+        "axios": "^0.19.0",
         "babel-loader": "^8.0.6",
         "babel-plugin-transform-class-properties": "^6.24.1",
         "babel-preset-es2015": "^6.24.1",
         "commander": "^4.0.1",
         "esm": "^3.2.25",
+        "flyio": "^0.6.14",
         "shelljs": "^0.8.3",
         "vue": "^2.6.11",
+        "vue-axios": "^2.1.5",
         "vuex": "^3.1.2"
     }
 }

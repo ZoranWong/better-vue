@@ -47,6 +47,8 @@ export default class Application {
 
     _apiGateway = null;
 
+    _httpAdapterClass = null;
+
     constructor () {
     }
 
@@ -56,6 +58,11 @@ export default class Application {
 
     setApiGateway (gateway) {
         this._apiGateway = gateway;
+        return this;
+    }
+
+    setHttpAdapter (httpAdapter) {
+        this._httpAdapterClass = httpAdapter;
         return this;
     }
 
