@@ -127,7 +127,6 @@ export default class VueAppAdapter extends AppAdapter {
     }
 
     mixin (mixins) {
-        console.log(mixins);
         Vue.mixin(mixins);
     }
 }
