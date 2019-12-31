@@ -1,4 +1,4 @@
-import {isArray, isFunction, isString, each, extend} from 'underscore';
+import {isArray, isFunction, isString, each, extend, isObject} from 'underscore';
 import Model from './models/Model';
 import Command from "./commands/Command";
 import ServiceProvider from "./providers/ServiceProvider";
@@ -179,8 +179,13 @@ export default class Application {
      * @param {Array|Object} config
      * @return {Application}
      * */
-    registerConfig (name, config) {
-        this.register(`_config.${name}`, config);
+    registerConfig (name, config = null) {
+        if ((isArray(name) || isObject(name)) && !config) {
+            config = name;
+            this.register('_config', config);
+        } else {
+            this.register(`_config.${name}`, config);
+        }
         return this;
     }
 
