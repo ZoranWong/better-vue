@@ -11,7 +11,7 @@ export default class ModelServiceProvider extends ServiceProvider {
                 if (typeof target[p] === 'undefined') {
                     app.registerModel(p, app._config['models'][p]);
                 }
-                return app._instances['$model'][p];
+                return target[p];
             }
         }));
         this._app.register('$store', new Vuex.Store({
