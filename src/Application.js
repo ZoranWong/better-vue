@@ -200,18 +200,19 @@ export default class Application {
 
     // 注册服务提供者
     registerServiceProviders () {
-        if (!Application._globalProviderRegistered) {
-            each(this._config['app']['providers'], async (value, key) => {
-                let provider = value;
-                if (isString(value)) {
-                    provider = await this.loader(value);
-                } else {
-                    provider = value;
-                }
-                this.registerProvider(provider);
-            });
-            Application._globalProviderRegistered = true;
-        }
+        each(this._config['providers'], async (value, key) => {
+            if(Application._globalProviderRegistered[key]){
+                return;
+            }
+            let provider = value;
+            if (isString(value)) {
+                provider = await this.loader(value);
+            } else {
+                provider = value;
+            }
+            this.registerProvider(provider);
+            Application._globalProviderRegistered[key] = true;
+        });
 
         this._serviceProviders.forEach((provider) => {
             provider.register();
