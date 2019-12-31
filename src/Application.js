@@ -86,7 +86,7 @@ export default class Application {
      * @return
      * */
     _reConstructModel (model, key) {
-        if (!isFunction(model[key]) && model.isChildProperty(key)) {
+        if (!isFunction(model[key]) && !model.isChildProperty(key)) {
             model.state[key] = model[key];
             model.getters[key] = (state) => {
                 return state[key];
@@ -99,7 +99,8 @@ export default class Application {
                     model.dispatch(key, value);
                 },
                 get () {
-                    return model.get(key);
+                    return model.getValue(key);
+                    // return key;
                 }
             })
         }
@@ -113,13 +114,14 @@ export default class Application {
      * */
     registerModel (name, model) {
         let modelInstance = Application._modelContainer[name] = new model(this);
+        modelInstance.modelName = name;
         if (modelInstance instanceof Collection) {
             modelInstance = collectionProxy(modelInstance);
             this.register(`$model.${name}`, modelInstance);
         } else {
             this.register(`$model.${name}`, modelInstance);
         }
-        this.$store.registerModule(name, modelInstance);
+        this.$store.registerModule(name, modelInstance,  { preserveState: true });
         each(modelInstance, (property, key) => {
             this._reConstructModel(modelInstance, key);
         });

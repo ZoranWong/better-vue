@@ -15,7 +15,13 @@ export default class ModelServiceProvider extends ServiceProvider {
             }
         }));
         this._app.register('$store', new Vuex.Store({
-            modules: {}
+            modules: {
+                models: {
+                    state: {
+                        modelClasses: []
+                    }
+                }
+            }
         }));
     }
 }
