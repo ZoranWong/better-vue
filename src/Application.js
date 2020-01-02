@@ -121,7 +121,10 @@ export default class Application {
         } else {
             this.register(`$model.${name}`, modelInstance);
         }
-        this.$store.registerModule(name, modelInstance,  { preserveState: true });
+        if(this.$store) {
+            this.$store.registerModule(name, modelInstance.storeData());
+        }
+        this.$modules['modules'][name] = modelInstance.storeData();
         each(modelInstance, (property, key) => {
             this._reConstructModel(modelInstance, key);
         });
@@ -305,6 +308,9 @@ export default class Application {
         this._instances = {};
         this.registerServiceProviders();
         this._registeredGlobal = false;
+        each(this._config['models'], (model, key) => {
+            this.registerModel(key, model);
+        });
         before && before.call(this, this);
         this.boot();
         after && after.call(this, this);
@@ -316,7 +322,7 @@ export default class Application {
      * */
     createPage (mountComponent, create, id = null) {
         /**@type {AppAdapter}*/
-        let adapter = new this._adapterClass(mountComponent, this.$store, this._route, create, this, id);
+        let adapter = new this._adapterClass(mountComponent, this.$modules, this._route, create, this, id);
         Application._pageContainer.push(adapter)
         return this;
     }

@@ -5,7 +5,8 @@ import {Store} from 'vuex';
 import {extend} from 'underscore';
 import Route from '../routes/Route';
 import Application from '../Application';
-
+import Vuex from "vuex";
+Vue.use(Vuex);
 export default class VueAppAdapter extends AppAdapter {
     /**@type {Vue}*/
     _page = null;
@@ -49,9 +50,10 @@ export default class VueAppAdapter extends AppAdapter {
         this._beforeDestroy = this._mountComponent.beforeDestroy;
         this._destroyed = this._mountComponent.destroyed;
         this._mountComponent = this.rebuildComponent();
-        this._page = vue({
-            store,
-            render: h => h(this._mountComponent)
+        store = new Store(store);
+        Vue.prototype.$store = application.$store = store;
+        this._page = new Vue({
+            ...this.rebuildComponent(store)
         });
         if (id) {
             this._page.$mount(id);
@@ -63,19 +65,23 @@ export default class VueAppAdapter extends AppAdapter {
         extend(this._page, application._instances);
     }
 
-    rebuildComponent () {
+    rebuildComponent (store) {
         let adapter = this;
         return extend(this._mountComponent, {
+            store,
             beforeCreate () {
+                console.log('xxx ============');
                 adapter.beforeCreate();
             },
             created () {
+                console.log('-----------', this);
                 adapter.created(this);
             },
             beforeMount () {
                 adapter.beforeMount(this);
             },
             mounted () {
+                console.log('xxx', this);
                 adapter.mounted(this);
             },
             beforeUpdate () {
@@ -127,6 +133,6 @@ export default class VueAppAdapter extends AppAdapter {
     }
 
     mixin (mixins) {
-        Vue.mixin(mixins);
+        extend(Vue.prototype, mixins);
     }
 }

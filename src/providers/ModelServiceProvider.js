@@ -1,7 +1,7 @@
 import ServiceProvider from "./ServiceProvider";
 import Vue from 'vue';
 import Vuex from 'vuex';
-Vue.use(Vuex);
+
 export default class ModelServiceProvider extends ServiceProvider {
     register () {
         let model = {};
@@ -14,14 +14,10 @@ export default class ModelServiceProvider extends ServiceProvider {
                 return target[p];
             }
         }));
-        this._app.register('$store', new Vuex.Store({
+        let store = {
             modules: {
-                models: {
-                    state: {
-                        modelClasses: []
-                    }
-                }
             }
-        }));
+        };
+        this._app.register('$modules', store);
     }
 }
