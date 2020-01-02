@@ -52,7 +52,7 @@ export default class VueAppAdapter extends AppAdapter {
         this._mountComponent = this.rebuildComponent();
         store = new Store(store);
         Vue.prototype.$store = application.$store = store;
-        this._page = new Vue({
+        this._page = vue({
             ...this.rebuildComponent(store)
         });
         if (id) {
