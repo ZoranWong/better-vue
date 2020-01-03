@@ -8,8 +8,7 @@ import Application from '../Application';
 import Vuex from "vuex";
 Vue.use(Vuex);
 export default class VueAppAdapter extends AppAdapter {
-    /**@type {Vue}*/
-    _page = null;
+
 
     /**@type {Function}*/
     _mounted = null;
@@ -35,9 +34,8 @@ export default class VueAppAdapter extends AppAdapter {
      * @param {Route} route
      * @param {function(component){}} vue
      * @param {Application} application
-     * @param {string|null} id
      * */
-    constructor (component, store, route, vue, application, id = null) {
+    constructor (component, store, route, vue, application) {
         super(component, application, route);
         this.mixin(application._instances);
         this.mixin({methods: application._mixinMethods});
@@ -55,20 +53,13 @@ export default class VueAppAdapter extends AppAdapter {
         this._page = vue({
             ...this.rebuildComponent(store)
         });
-        if (id) {
-            this._page.$mount(id);
-        } else {
-            this._page.$mount();
-        }
-
         this._page['$adapter'] = this;
         extend(this._page, application._instances);
     }
 
     rebuildComponent (store) {
         let adapter = this;
-        return extend(this._mountComponent, {
-            store,
+        return extend({store, ...this._mountComponent}, {
             beforeCreate () {
                 console.log('xxx ============');
                 adapter.beforeCreate();

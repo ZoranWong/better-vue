@@ -27,6 +27,7 @@ export default class HttpService extends Service {
         this._config['transformRequest'] = this._requestTransformers;
         this._config['transformResponse'] = this._responseTransformers;
         this._config['withCredentials'] = this._withCredentials;
+        this._httpClient = new adapter(this._config);
     }
 
     httpAdapter (adapter) {

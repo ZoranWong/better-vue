@@ -324,7 +324,7 @@ export default class Application {
         /**@type {AppAdapter}*/
         let adapter = new this._adapterClass(mountComponent, this.$modules, this._route, create, this, id);
         Application._pageContainer.push(adapter)
-        return this;
+        return adapter._page;
     }
 
     currentPage () {

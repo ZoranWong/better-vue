@@ -1,6 +1,7 @@
 import {ComponentOptions} from 'vue';
 import Application from '../Application';
 import Route from '../routes/Route';
+import Vue from 'vue';
 
 export default class AppAdapter {
     /**@type {ComponentOptions}*/
@@ -9,6 +10,8 @@ export default class AppAdapter {
     _app = null;
     /**@type {Route}*/
     _route = null;
+    /**@type {Vue}*/
+    _page = null;
 
     constructor (component, application, route) {
         this._mountComponent = component;
@@ -18,5 +21,9 @@ export default class AppAdapter {
 
     isCurrentPage (route) {
         return this._route.current['name'] === route;
+    }
+
+    $mount (id = null) {
+        this._page.$mount(id);
     }
 }
