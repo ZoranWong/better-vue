@@ -16,10 +16,30 @@ import VueAppAdapter from "./adapters/VueAppAdapter";
 import WXFlyioAdapter from './adapters/WXFlyioAdapter';
 import AxiosAdapter from './adapters/AxiosAdapter';
 import AppServiceProvider from "./providers/AppServiceProvider";
+
 const application = new Application();
 application.registerProvider(ModelServiceProvider);
 application.registerProvider(HttpServiceProvider);
 application.registerProvider(AppServiceProvider);
-export {ServiceProvider, Service, Model, FormRequest, Response, Route, Middleware, ExceptionHandler, Command, Transformer, AxiosAdapter, WXFlyioAdapter};
+
+let command = async (name, ...params) => {
+    return await application.command(name, ...params);
+}
+export {
+    ServiceProvider,
+    Service,
+    Model,
+    FormRequest,
+    Response,
+    Route,
+    Middleware,
+    ExceptionHandler,
+    Command,
+    Transformer,
+    AxiosAdapter,
+    WXFlyioAdapter,
+    command
+};
 application.setAdapter(VueAppAdapter);
+
 export default application;

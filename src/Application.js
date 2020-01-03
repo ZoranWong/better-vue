@@ -61,6 +61,24 @@ export default class Application {
         return this;
     }
 
+    /**
+     * @param {string} key
+     * @return {any}
+     * */
+    config (key) {
+        let keys = key.split('.');
+        let data = this._config;
+        try{
+            each(keys, (k)=>{
+                data = data[k];
+            });
+            return data;
+        }catch (e) {
+            return null;
+        }
+
+    }
+
     setHttpAdapter (httpAdapter) {
         this._httpAdapterClass = httpAdapter;
         return this;
@@ -100,7 +118,6 @@ export default class Application {
                 },
                 get () {
                     return model.getValue(key);
-                    // return key;
                 }
             })
         }
@@ -121,7 +138,7 @@ export default class Application {
         } else {
             this.register(`$model.${name}`, modelInstance);
         }
-        if(this.$store) {
+        if (this.$store) {
             this.$store.registerModule(name, modelInstance.storeData());
         }
         this.$modules['modules'][name] = modelInstance.storeData();
@@ -206,7 +223,7 @@ export default class Application {
     // 注册服务提供者
     registerServiceProviders () {
         each(this._config['providers'], async (value, key) => {
-            if(Application._globalProviderRegistered[key]){
+            if (Application._globalProviderRegistered[key]) {
                 return;
             }
             let provider = value;

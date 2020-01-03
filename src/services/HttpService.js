@@ -23,7 +23,7 @@ export default class HttpService extends Service {
         this._httpAdapter = adapter;
         this._host = host;
         this._middlewarePipeline = new Pipeline(application);
-        this._config['host'] = this.host;
+        this._config['host'] = host;
         this._config['transformRequest'] = this._requestTransformers;
         this._config['transformResponse'] = this._responseTransformers;
         this._config['withCredentials'] = this._withCredentials;
@@ -32,6 +32,12 @@ export default class HttpService extends Service {
 
     httpAdapter (adapter) {
         this._httpAdapter = adapter;
+    }
+
+    set host (value) {
+        this._host = value;
+        this._config['host'] = value;
+        return value;
     }
 
     config (config) {
@@ -65,7 +71,7 @@ export default class HttpService extends Service {
     }
 
     async send (request, response) {
-        this._middleware(request.middlewares);
+        this._middleware(request._middlewares);
         if (!this._httpClient && this._httpAdapter) {
             if (isClass(this._httpAdapter)) {
                 this._httpClient = new this._httpAdapter(this._config);
@@ -77,7 +83,7 @@ export default class HttpService extends Service {
             request = this._validate(request);
             return request;
         })()).then(async (request) => {
-            if(this._httpClient) {
+            if (this._httpClient) {
                 return await this._httpClient.send(request);
             }
             return null;

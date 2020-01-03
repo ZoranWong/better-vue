@@ -3,6 +3,7 @@ export default class FormRequest {
     _method = null;
     _url = null;
     _headers = {};
+    _query = {};
     /**@type {Function}*/
     _response = null;
     constructor (data) {
