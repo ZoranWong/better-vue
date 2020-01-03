@@ -16,11 +16,13 @@ import VueAppAdapter from "./adapters/VueAppAdapter";
 import WXFlyioAdapter from './adapters/WXFlyioAdapter';
 import AxiosAdapter from './adapters/AxiosAdapter';
 import AppServiceProvider from "./providers/AppServiceProvider";
+import ValidatorServiceProvider from "./providers/ValidatorServiceProvider";
 
 const application = new Application();
 application.registerProvider(ModelServiceProvider);
 application.registerProvider(HttpServiceProvider);
 application.registerProvider(AppServiceProvider);
+application.registerProvider(ValidatorServiceProvider);
 
 let command = async (name, ...params) => {
     return await application.command(name, ...params);

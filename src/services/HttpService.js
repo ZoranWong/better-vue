@@ -56,6 +56,11 @@ export default class HttpService extends Service {
         this._headers[name] = value;
     }
 
+    setValidator (validator) {
+        this._validator = validator;
+        return this;
+    }
+
     _validate (request) {
         let rules = request.rules;
         let messages = request.messages();
