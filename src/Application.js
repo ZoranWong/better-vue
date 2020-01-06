@@ -49,6 +49,8 @@ export default class Application {
 
     _httpAdapterClass = null;
 
+    _appRoot = '';
+
     constructor () {
     }
 
@@ -61,6 +63,11 @@ export default class Application {
         return this;
     }
 
+    setAppRoot (root) {
+        this._appRoot = root;
+    }
+
+
     /**
      * @param {string} key
      * @return {any}
@@ -68,12 +75,12 @@ export default class Application {
     config (key) {
         let keys = key.split('.');
         let data = this._config;
-        try{
-            each(keys, (k)=>{
+        try {
+            each(keys, (k) => {
                 data = data[k];
             });
             return data;
-        }catch (e) {
+        } catch (e) {
             return null;
         }
 

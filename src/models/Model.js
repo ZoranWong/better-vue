@@ -20,6 +20,10 @@ export default class Model {
         Model._app = app;
     }
 
+    get app () {
+        return Model._app;
+    }
+
     // 回调函数可以直接使用this指向注册model实例，回调函数接受两个参数一个payload结构体，一个model层的state
     // 对应vuex中的actions与mutations
     addEventListener (type, callback) {

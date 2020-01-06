@@ -17,6 +17,7 @@
         "plugins": [
             "@babel/plugin-proposal-class-properties",
             "@babel/plugin-transform-object-super",
+            "@babel/plugin-syntax-dynamic-import",
             [
                 "@babel/plugin-transform-classes",
                 {
@@ -42,6 +43,7 @@
         "@babel/helpers": "^7.7.4",
         "@babel/node": "^7.7.4",
         "@babel/plugin-proposal-class-properties": "^7.7.4",
+        "@babel/plugin-syntax-dynamic-import": "^7.7.4",
         "@babel/plugin-transform-object-super": "^7.7.4",
         "@babel/polyfill": "^7.7.0",
         "@babel/preset-env": "^7.7.7",
