@@ -17,6 +17,7 @@ export default class Pipeline {
     }
 
     through (...pipes) {
+        console.log(pipes,  _.isArray(pipes) );
         this._pipes = _.isArray(pipes) ? pipes : Array.from(arguments);
         return this;
     }
@@ -27,7 +28,9 @@ export default class Pipeline {
     }
 
     async then (destination) {
-        let pipeline = this._pipes.reverse().reduce(this._carry(), this._prepareDestination(destination));
+        let pipes = this._pipes.reverse();
+        console.log(pipes);
+        let pipeline = pipes.reduce(this._carry(), this._prepareDestination(destination));
         return await pipeline(this._passable);
     }
 

@@ -1,6 +1,7 @@
 import Service from "./Service";
 import Pipeline from "../pipe/Pipeline";
 import {isClass} from "../utils/helpers";
+import Response from '../responses/Response';
 
 export default class HttpService extends Service {
     _httpClient = null;
@@ -18,7 +19,7 @@ export default class HttpService extends Service {
     _validator = null;
     _exception = null;
 
-    constructor (application, adapter, host) {
+    constructor (application, adapter, host = null) {
         super(application);
         this._httpAdapter = adapter;
         this._host = host;
@@ -27,7 +28,6 @@ export default class HttpService extends Service {
         this._config['transformRequest'] = this._requestTransformers;
         this._config['transformResponse'] = this._responseTransformers;
         this._config['withCredentials'] = this._withCredentials;
-        this._httpClient = new adapter(this._config);
     }
 
     httpAdapter (adapter) {
@@ -45,7 +45,7 @@ export default class HttpService extends Service {
     }
 
     _middleware (...middleware) {
-        this._middlewarePipeline.through(middleware);
+        this._middlewarePipeline.through(...middleware);
     }
 
     headers (options) {
@@ -62,9 +62,10 @@ export default class HttpService extends Service {
     }
 
     _validate (request) {
-        let rules = request.rules;
+        let rules = request.rules();
         let messages = request.messages();
-        let result = this._validator.validate(request.all(), rules(), messages());
+        let data = request.all();
+        let result = this._validator.validate(data, rules, messages);
         if (!result) {
             this._throw(this._validator.message());
         }
@@ -75,8 +76,8 @@ export default class HttpService extends Service {
         this._exception.throw(message);
     }
 
-    async send (request, response) {
-        this._middleware(request._middlewares);
+    async send (request, responser = Response) {
+        this._middleware.apply(this, request._middlewares);
         if (!this._httpClient && this._httpAdapter) {
             if (isClass(this._httpAdapter)) {
                 this._httpClient = new this._httpAdapter(this._config);
@@ -89,7 +90,9 @@ export default class HttpService extends Service {
             return request;
         })()).then(async (request) => {
             if (this._httpClient) {
-                return await this._httpClient.send(request);
+                let result = await this._httpClient.send(request, responser);
+                console.log(result);
+                return result;
             }
             return null;
         });

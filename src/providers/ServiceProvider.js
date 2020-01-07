@@ -16,4 +16,8 @@ export default class ServiceProvider {
 
     boot () {
     }
+
+    get app () {
+        return this._app;
+    }
 }

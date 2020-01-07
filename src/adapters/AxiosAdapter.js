@@ -5,25 +5,16 @@ export default class AxiosAdapter extends HttpAdapter {
         super(config);
         this._client = axios.create(this._config);
     }
-    send (request) {
-        return new Promise((resolve, reject) => {
-            if (this._client) {
-                /**@type {AxiosRequestConfig}*/
-                let axiosRequest = {};
-                axiosRequest.headers = request._headers;
-                axiosRequest.method = request._method;
-                axiosRequest.url = request._url;
-                axiosRequest.params = request._query;
-                axiosRequest.data = request._data;
-                /**@type {AxiosResponse} response*/
-                this._client.request(axiosRequest).then((response) => {
-                    resolve(new request._response(response));
-                }, (reason) => {
-                    reject(reason);
-                });
-            } else {
-                reject(false);
-            }
-        })
+
+    request (request) {
+        /**@type {AxiosRequestConfig}*/
+        let axiosRequest = {};
+        axiosRequest.baseURL = this.config['host'];
+        axiosRequest.headers = request.headers;
+        axiosRequest.method = request.method.toLowerCase();
+        axiosRequest.url = request.uri;
+        axiosRequest.params = request.query;
+        axiosRequest.data = request.data;
+        return axiosRequest;
     }
 }

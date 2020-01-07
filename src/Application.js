@@ -63,6 +63,14 @@ export default class Application {
         return this;
     }
 
+    get apiGateWay () {
+        return this._apiGateway;
+    }
+
+    get httpAdapterClass () {
+        return this._httpAdapterClass;
+    }
+
     setAppRoot (root) {
         this._appRoot = root;
     }
@@ -332,9 +340,14 @@ export default class Application {
         this._instances = {};
         this.registerServiceProviders();
         this._registeredGlobal = false;
-        each(this._config['models'], (model, key) => {
-            this.registerModel(key, model);
-        });
+        if (this.config('models'))
+            each(this.config('models'), (model, key) => {
+                this.registerModel(key, model);
+            });
+        if (this.config('commands'))
+            each(this.config('commands'), (command) => {
+                this.registerCommand(command.commandName(), command);
+            });
         before && before.call(this, this);
         this.boot();
         after && after.call(this, this);
