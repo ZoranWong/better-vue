@@ -66,4 +66,14 @@ export default class Model {
             mutations: this.mutations
         }
     }
+
+    properties () {
+        let result = {};
+        for (let key in this) {
+            if (!this.isChildProperty(key)) {
+                result[key] = this[key];
+            }
+        }
+        return result;
+    }
 }

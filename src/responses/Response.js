@@ -5,6 +5,10 @@ export default class Response {
     constructor (status, body) {
         this._body = body;
         this._status = status;
+        this._parse();
+    }
+
+    _parse () {
     }
 
     get status () {
