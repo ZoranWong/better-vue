@@ -38,7 +38,7 @@ export default class VueAppAdapter extends AppAdapter {
     constructor (component, store, route, vue, application) {
         super(component, application, route);
         this.mixin(application._instances);
-        this.mixin({methods: application._mixinMethods});
+        this.mixin(application._mixinMethods);
         this._created = this._mountComponent.created;
         this._mounted = this._mountComponent.mounted;
         this._beforeMount = this._mountComponent.beforeMount;
