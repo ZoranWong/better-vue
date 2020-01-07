@@ -20,7 +20,7 @@ export default class HttpAdapter {
                 let requestConfig =  this.request(request);
                 /**@type {AxiosResponse} response*/
                 this._client.request(requestConfig).then((response) => {
-                    let res = new responser(response.status, response.data);
+                    let res = new responser(response.status, response.headers, response.data);
                     resolve(request.response(res));
                 }, (reason) => {
                     reject(reason);

@@ -1,10 +1,12 @@
 export default class Response {
     _status = null;
     _body = null;
+    _headers = null;
 
-    constructor (status, body) {
+    constructor (status, headers, body) {
         this._body = body;
         this._status = status;
+        this._headers = headers;
         this._parse();
     }
 
@@ -17,5 +19,9 @@ export default class Response {
 
     get body () {
         return this._body;
+    }
+
+    get headers(){
+        return this._headers;
     }
 }
