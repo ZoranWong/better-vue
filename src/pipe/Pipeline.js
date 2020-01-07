@@ -17,7 +17,6 @@ export default class Pipeline {
     }
 
     through (...pipes) {
-        console.log(pipes,  _.isArray(pipes) );
         this._pipes = _.isArray(pipes) ? pipes : Array.from(arguments);
         return this;
     }
@@ -29,9 +28,9 @@ export default class Pipeline {
 
     async then (destination) {
         let pipes = this._pipes.reverse();
-        console.log(pipes);
         let pipeline = pipes.reduce(this._carry(), this._prepareDestination(destination));
-        return await pipeline(this._passable);
+        let result = await pipeline.then(f => f(this._passable));
+        return result;
     }
 
     async thenReturn () {
@@ -56,7 +55,8 @@ export default class Pipeline {
                 } else if(isClass(pipe)){
                     pipe = new pipe();
                 }
-                return pipe.hasOwnProperty(this._method) ? await pipe[this._method](passable, stack) : null;
+                let result = typeof pipe[this._method] !== 'undefined' ? await pipe[this._method].apply(pipe, [passable, stack]) : null;
+                return result;
             }
         }
     }

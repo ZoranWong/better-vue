@@ -91,7 +91,7 @@ export default class HttpService extends Service {
         })()).then(async (request) => {
             if (this._httpClient) {
                 let result = await this._httpClient.send(request, responser);
-                console.log(result);
+
                 return result;
             }
             return null;

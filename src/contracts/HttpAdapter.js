@@ -15,11 +15,9 @@ export default class HttpAdapter {
     /**@type {FormRequest}*/
     send (request, responser) {
         return new Promise((resolve, reject) => {
-            console.log(this._client);
             if (this._client) {
                 /**@type {AxiosRequestConfig|FlyRequestConfig}*/
-                let requestConfig = {};
-                requestConfig = this.request(request);
+                let requestConfig =  this.request(request);
                 /**@type {AxiosResponse} response*/
                 this._client.request(requestConfig).then((response) => {
                     let res = new responser(response.status, response.data);

@@ -47,11 +47,11 @@ export default class VueAppAdapter extends AppAdapter {
         this._beforeUpdate = this._mountComponent.beforeUpdate;
         this._beforeDestroy = this._mountComponent.beforeDestroy;
         this._destroyed = this._mountComponent.destroyed;
-        this._mountComponent = this.rebuildComponent();
+        this._mountComponent = this.rebuildComponent(store);
         store = new Store(store);
         Vue.prototype.$store = application.$store = store;
         this._page = vue({
-            ...this.rebuildComponent(store)
+            ...this._mountComponent
         });
         this._page['$adapter'] = this;
         extend(this._page, application._instances);
@@ -61,18 +61,15 @@ export default class VueAppAdapter extends AppAdapter {
         let adapter = this;
         return extend({store, ...this._mountComponent}, {
             beforeCreate () {
-                console.log('xxx ============');
                 adapter.beforeCreate();
             },
             created () {
-                console.log('-----------', this);
                 adapter.created(this);
             },
             beforeMount () {
                 adapter.beforeMount(this);
             },
             mounted () {
-                console.log('xxx', this);
                 adapter.mounted(this);
             },
             beforeUpdate () {
