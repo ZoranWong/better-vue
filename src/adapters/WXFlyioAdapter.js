@@ -18,6 +18,7 @@ export default class WXFlyioAdapter extends HttpAdapter {
         flyRequest.headers = request.headers;
         flyRequest.method = request.method;
         flyRequest.url = request.uri;
+        flyRequest.params = request.query;
         flyRequest.body = request.data;
         return flyRequest;
     }

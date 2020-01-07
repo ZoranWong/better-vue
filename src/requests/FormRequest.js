@@ -5,7 +5,7 @@ const HTTP_GET = 'GET';
 const HTTP_POST = 'POST';
 const HTTP_PUT = 'PUT';
 const HTTP_DELETE = 'DELETE';
-const HTTP_HEADER = 'HEADER';
+const HTTP_HEAD = 'HEADER';
 export default class FormRequest {
     _data = {};
     _method = null;
@@ -19,10 +19,11 @@ export default class FormRequest {
     static POST = HTTP_POST;
     static PUT = HTTP_PUT;
     static DELETE = HTTP_DELETE;
-    static HEADER = HTTP_HEADER;
+    static HEAD = HTTP_HEAD;
 
-    constructor (data) {
-        if (this._method === HTTP_DELETE || this._method === HTTP_HEADER || this._method === HTTP_GET) {
+    constructor (data, method = HTTP_GET) {
+        this._method = method;
+        if (this._method === HTTP_DELETE || this._method === HTTP_HEAD || this._method === HTTP_GET) {
             this._query = data;
         } else {
             this._data = data;
@@ -63,7 +64,7 @@ export default class FormRequest {
      * @return {Object.<string, Object>}
      * */
     get query () {
-        return this._method === HTTP_DELETE || this._method === HTTP_HEADER || this._method === HTTP_GET ? this._query : {};
+        return this._method === HTTP_DELETE || this._method === HTTP_HEAD || this._method === HTTP_GET ? this._query : {};
     }
 
     /**
