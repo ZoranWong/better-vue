@@ -29,7 +29,7 @@ export default class Pipeline {
     async then (destination) {
         let pipes = this._pipes.reverse();
         let pipeline = pipes.reduce(this._carry(), this._prepareDestination(destination));
-        let result = await pipeline.then(f => f(this._passable));
+        let result = _.isFunction(pipeline) ? await pipeline(this._passable) : await pipeline.then(f => f(this._passable));
         return result;
     }
 
