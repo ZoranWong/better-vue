@@ -7,10 +7,10 @@ export default class Response {
         this._body = body;
         this._status = status;
         this._headers = headers;
-        this._parse();
     }
 
     _parse () {
+		console.log('_parse in super class ');
     }
 
     get status () {
