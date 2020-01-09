@@ -6,6 +6,9 @@ import CreateServiceProviderCommand from "./commands/CreateServiceProviderComman
 import CreateModelCommand from "./commands/CreateModelCommand";
 import commander from 'commander';
 import CreateMiddlewareCommand from "./commands/CreateMiddlewareCommand";
+import CreateRequestCommand from "./commands/CreateRequestCommand";
+import CreateResponseCommand from "./commands/CreateResponseCommand";
+import CreateConsoleCommand from "./commands/CreateConsoleCommand";
 
 const program = new commander.Command();
 let application = new Application();
@@ -14,6 +17,9 @@ application.registerCommand('service:create', CreateServiceCommand);
 application.registerCommand('provider:create', CreateServiceProviderCommand);
 application.registerCommand('model:create', CreateModelCommand);
 application.registerCommand('middleware:create', CreateMiddlewareCommand);
+application.registerCommand('request:create', CreateRequestCommand);
+application.registerCommand('response:create', CreateResponseCommand);
+application.registerCommand('console:create', CreateConsoleCommand);
 program.version('0.0.1')
 .option('--root <root>', 'set root path','src')
 .option('--dir <dir>', 'set file dir','')
