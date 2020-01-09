@@ -12,7 +12,7 @@ import CreateConsoleCommand from "./commands/CreateConsoleCommand";
 
 const program = new commander.Command();
 let application = new Application();
-application.registerConfig('app', app);
+application.registerConfig(app);
 application.registerCommand('service:create', CreateServiceCommand);
 application.registerCommand('provider:create', CreateServiceProviderCommand);
 application.registerCommand('model:create', CreateModelCommand);
