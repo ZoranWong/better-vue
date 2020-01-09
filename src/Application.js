@@ -75,6 +75,14 @@ export default class Application {
         this._appRoot = root;
     }
 
+    get commands () {
+        return Application._commandContainer;
+    }
+
+    get instances () {
+        return Application._instanceContainer;
+    }
+
 
     /**
      * @param {string} key
@@ -97,6 +105,10 @@ export default class Application {
     setHttpAdapter (httpAdapter) {
         this._httpAdapterClass = httpAdapter;
         return this;
+    }
+
+    get pages () {
+        return Application._pageContainer;
     }
 
     /**
@@ -144,14 +156,14 @@ export default class Application {
      * @param {Model} model
      * @return {Application}
      * */
-    registerModel (name, model) {
+    registerModel (name, model, prefix = '$model') {
         let modelInstance = Application._modelContainer[name] = new model(this);
         modelInstance.modelName = name;
         if (modelInstance instanceof Collection) {
             modelInstance = collectionProxy(modelInstance);
-            this.register(`$model.${name}`, modelInstance);
+            this.register(`${prefix}.${name}`, modelInstance);
         } else {
-            this.register(`$model.${name}`, modelInstance);
+            this.register(`${prefix}.${name}`, modelInstance);
         }
         if (this.$store) {
             this.$store.registerModule(name, modelInstance.storeData());
@@ -196,14 +208,12 @@ export default class Application {
      *@param {string|Array} paths
      * @return {Class|Array}
      * */
-    async loader (paths) {
-        if (!isArray(paths)) {
-            paths = [paths];
-        }
+    loader (...paths) {
         let length = paths.length;
         let classes = {};
         for (let i = 0; i < length; i++) {
-            let result = await import(paths[i]);
+            let result = require(`${paths[i]}`);
+            console.log(result);
             let cl = (typeof result['default'] !== 'undefined' ? result['default'] : result);
             classes[cl.name] = cl;
         }
@@ -216,12 +226,14 @@ export default class Application {
      * @param {Array|Object} config
      * @return {Application}
      * */
-    registerConfig (name, config = null) {
+    registerConfig (name, config = null, prefix = '$config') {
         if ((isArray(name) || isObject(name)) && !config) {
             config = name;
-            this.register('_config', config);
+            this.register(prefix, config);
+            this._config = config;
         } else {
-            this.register(`_config.${name}`, config);
+            this.register(`${prefix}.${name}`, config);
+            this._config[name] = config;
         }
         return this;
     }
@@ -237,16 +249,11 @@ export default class Application {
 
     // 注册服务提供者
     registerServiceProviders () {
-        each(this._config['providers'], async (value, key) => {
+        each(this._config['providers'], (value, key) => {
             if (Application._globalProviderRegistered[key]) {
                 return;
             }
             let provider = value;
-            if (isString(value)) {
-                provider = await this.loader(value);
-            } else {
-                provider = value;
-            }
             this.registerProvider(provider);
             Application._globalProviderRegistered[key] = true;
         });

@@ -6,9 +6,15 @@
     "files": [
         "src/"
     ],
+    "bin": {
+        "better": "packages/better-vue/bin/main.js --dir=p"
+    },
     "scripts": {
-        "test": "better test",
-        "better create": "node ./bin/create.js"
+        "test": "better test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ZoranWong/better-vue.git"
     },
     "babel": {
         "presets": [

@@ -10,7 +10,7 @@ export default class NodeCommand extends BaseCommand {
     /**
      * @param {Application} application
      * */
-    constructor(application) {
+    constructor (application) {
         super(application);
     }
 
@@ -19,16 +19,37 @@ export default class NodeCommand extends BaseCommand {
      * @param {} params
      * @return {boolean}
      * */
-    _command(shellCommand, ...params) {
+    _command (shellCommand, ...params) {
         if (typeof shell[shellCommand] === 'function') {
             return shell[shellCommand](...params);
         }
         return false;
     }
 
-    mkdir(dir) {
+    mkdir (dir) {
         if (!fs.existsSync(dir)) {
             this._command('mkdir', dir);
         }
+    }
+
+    mkFile (file, content) {
+        if(!fs.existsSync(file)){
+            fs.appendFileSync(file, content, 'utf8');
+        }
+    }
+
+    /**
+     * @param {string} dir
+     * @param {string} className
+     * */
+    async handle (dir, className) {
+        this.mkdir(dir);
+        this.mkFile(`${dir}/${className}.js`, this.template(className));
+        return this._args;
+    }
+
+    template (className) {
+        return `
+        `;
     }
 }
