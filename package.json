@@ -7,7 +7,7 @@
         "src/"
     ],
     "bin": {
-        "better": "packages/better-vue/bin/main.js --dir=p"
+        "better": "bin/main.js --dir=p"
     },
     "scripts": {
         "test": "better test"
