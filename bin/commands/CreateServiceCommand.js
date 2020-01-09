@@ -15,8 +15,9 @@ export default class CreateServiceCommand extends Command {
         return this._args;
     }
 
-    template (className) {
-        return `import {Service} from 'better-vue';
+    template (className, parent) {
+        let importStr = parent ? `import * as Service from '${parent}'` : "import {Service} from 'better-vue";
+        return `${importStr}
 export default class ${className} extends Service {
 }
         `;

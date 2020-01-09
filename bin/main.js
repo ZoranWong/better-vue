@@ -14,15 +14,20 @@ application.registerCommand('service:create', CreateServiceCommand);
 application.registerCommand('provider:create', CreateServiceProviderCommand);
 application.registerCommand('model:create', CreateModelCommand);
 application.registerCommand('middleware:create', CreateMiddlewareCommand);
-program.version('0.0.1');
+program.version('0.0.1')
+.option('--root <root>', 'set root path','src')
+.option('--dir <dir>', 'set file dir','')
+.option('--superClass <super>', 'set parent class','')
+.option('--method <method>', 'set http method', 'GET');
 program.usage('better <cmd> <className> [options]')
-.arguments('<cmd> <className> [options]')
-.option('--dir <dir>')
 .description('create better-vue provider, service or model')
+.arguments('<cmd> <className> [options]')
 .action((cmd, className) => {
-    let dir = program['dir'];
-    application.command(cmd, dir, className).then((result) => {
-        console.log("command exc", cmd, dir, className);
+    let dir = program['root']+'/'+program['dir'];
+    let parent = program['superClass'];
+    let method = program['method'];
+    application.command(cmd, dir, className, parent, method).then((result) => {
+        console.log("command exc", cmd, dir, className, parent, method);
     });
 });
 program.parse(process.argv);

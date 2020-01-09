@@ -42,13 +42,13 @@ export default class NodeCommand extends BaseCommand {
      * @param {string} dir
      * @param {string} className
      * */
-    async handle (dir, className) {
+    async handle (dir, className, parent) {
         this.mkdir(dir);
-        this.mkFile(`${dir}/${className}.js`, this.template(className));
+        this.mkFile(`${dir}/${className}.js`, this.template(className, parent));
         return this._args;
     }
 
-    template (className) {
+    template (className, parent) {
         return `
         `;
     }
