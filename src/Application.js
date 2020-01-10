@@ -8,7 +8,7 @@ import {VueConstructor} from 'vue'
 import Collection from "./models/Collection";
 import {collectionProxy} from "./utils/helpers";
 import AppAdapter from './contracts/AppAdapter';
-import Route from "./routes/Route"
+import Router from "./routes/Router"
 
 /**
  * 应用容器类型
@@ -22,7 +22,7 @@ export default class Application {
     _config = {};
     _exceptionHandlers = {};
     _template = {};
-    /**@type {Route}*/
+    /**@type {Router}*/
     _route = null;
     _multiplePage = false;
     _registeredGlobal = true;

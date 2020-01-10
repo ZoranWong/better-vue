@@ -7,7 +7,7 @@ import Service from './services/Service';
 import Model from './models/Model';
 import Response from './responses/Response';
 import FormRequest from './requests/FormRequest';
-import Route from './routes/Route';
+import Router from './routes/Router';
 import Middleware from './middlewares/Middleware';
 import ExceptionHandler from './exceptions/ExceptionHandler';
 import Command from './commands/Command';
@@ -17,23 +17,25 @@ import WXFlyioAdapter from './adapters/WXFlyioAdapter';
 import AxiosAdapter from './adapters/AxiosAdapter';
 import AppServiceProvider from "./providers/AppServiceProvider";
 import ValidatorServiceProvider from "./providers/ValidatorServiceProvider";
+import RouterServiceProvider from "./providers/RouterServiceProvider";
 
 const application = new Application();
 application.registerProvider(ModelServiceProvider);
 application.registerProvider(HttpServiceProvider);
 application.registerProvider(AppServiceProvider);
 application.registerProvider(ValidatorServiceProvider);
-
+application.registerProvider(RouterServiceProvider);
 let command = async (name, ...params) => {
     return await application.command(name, ...params);
 }
+application.mixin('$command', command);
 export {
     ServiceProvider,
     Service,
     Model,
     FormRequest,
     Response,
-    Route,
+    Router,
     Middleware,
     ExceptionHandler,
     Command,

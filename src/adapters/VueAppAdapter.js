@@ -3,7 +3,7 @@ import {ComponentOptions} from 'vue';
 import Vue from 'vue';
 import {Store} from 'vuex';
 import {extend} from 'underscore';
-import Route from '../routes/Route';
+import Router from '../routes/Router';
 import Application from '../Application';
 import Vuex from "vuex";
 Vue.use(Vuex);
@@ -31,7 +31,7 @@ export default class VueAppAdapter extends AppAdapter {
     /**
      * @param {ComponentOptions} component
      * @param {Store} store
-     * @param {Route} route
+     * @param {Router} route
      * @param {function(component){}} vue
      * @param {Application} application
      * */

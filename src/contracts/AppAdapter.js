@@ -1,6 +1,6 @@
 import {ComponentOptions} from 'vue';
 import Application from '../Application';
-import Route from '../routes/Route';
+import Router from '../routes/Router';
 import Vue from 'vue';
 
 export default class AppAdapter {
@@ -8,7 +8,7 @@ export default class AppAdapter {
     _mountComponent = null;
     /**@type {Application}*/
     _app = null;
-    /**@type {Route}*/
+    /**@type {Router}*/
     _route = null;
     /**@type {Vue}*/
     _page = null;
