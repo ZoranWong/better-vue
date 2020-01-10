@@ -1,8 +1,8 @@
-import {Query} from "miniprogram-api-typings/types/wx/lib.wx.cloud";
-
+import Query from "./Query";
 export default class Route {
     name = null;
     path = null;
+    /**@type {Query} */
     query = null;
     params = null;
 

@@ -1,6 +1,6 @@
 {
     "name": "better-vue",
-    "version": "0.0.1",
+    "version": "0.0.10",
     "description": "better way to use vue framework to create app, web, and wechat miniprogram ",
     "main": "src/main.js",
     "files": [
