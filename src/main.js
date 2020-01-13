@@ -42,7 +42,8 @@ export {
     Transformer,
     AxiosAdapter,
     WXFlyioAdapter,
-    command
+    command,
+    Application
 };
 application.setAdapter(VueAppAdapter);
 

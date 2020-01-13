@@ -1,4 +1,4 @@
-#!/usr/bin/env babel-node
+#!/usr/bin/env node
 import Application from '../src/Application';
 import app from '../configs/app';
 import CreateServiceCommand from "./commands/CreateServiceCommand";
