@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
@@ -15,22 +15,29 @@ var _underscore = require("underscore");
 
 var _Route = _interopRequireDefault(require("./Route"));
 
+var _Application = _interopRequireDefault(require("../Application"));
+
 var Router =
 /*#__PURE__*/
 function () {
   /**@type {Route} current*/
 
+  /**@type {Application} _app*/
+
   /**@type {Object.<string, Object.<string, any>>} _routes*/
 
   /**
+   * @param {Application} app
    * @param {[Object.<string, any>]} routes
    * */
-  function Router() {
+  function Router(app) {
     var _this = this;
 
-    var routes = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-    (0, _defineProperty2.default)(this, "_current", null);
-    (0, _defineProperty2.default)(this, "_routes", {});
+    var routes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+    (0, _defineProperty2["default"])(this, "_current", null);
+    (0, _defineProperty2["default"])(this, "_app", null);
+    (0, _defineProperty2["default"])(this, "_routes", {});
+    this._app = app;
     (0, _underscore.each)(routes, function (route) {
       _this.addRoute(route);
     });
@@ -51,7 +58,7 @@ function () {
     return route;
   };
 
-  (0, _createClass2.default)(Router, [{
+  (0, _createClass2["default"])(Router, [{
     key: "currentRoute",
     get: function get() {
       return this._current;
@@ -64,4 +71,4 @@ function () {
   return Router;
 }();
 
-exports.default = Router;
+exports["default"] = Router;

@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -21,10 +21,10 @@ function () {
   _proto.handle =
   /*#__PURE__*/
   function () {
-    var _handle = (0, _asyncToGenerator2.default)(
+    var _handle = (0, _asyncToGenerator2["default"])(
     /*#__PURE__*/
-    _regenerator.default.mark(function _callee(request, next) {
-      return _regenerator.default.wrap(function _callee$(_context) {
+    _regenerator["default"].mark(function _callee(request, next) {
+      return _regenerator["default"].wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
@@ -52,4 +52,4 @@ function () {
   return Middleware;
 }();
 
-exports.default = Middleware;
+exports["default"] = Middleware;

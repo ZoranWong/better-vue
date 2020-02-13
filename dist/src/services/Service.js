@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
@@ -18,8 +18,8 @@ var Service =
 * @param {Application} application
 * */
 function Service(application) {
-  (0, _defineProperty2.default)(this, "_app", null);
+  (0, _defineProperty2["default"])(this, "_app", null);
   this._app = application;
 };
 
-exports.default = Service;
+exports["default"] = Service;

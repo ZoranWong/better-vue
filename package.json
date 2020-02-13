@@ -53,7 +53,8 @@
     "author": "Zoran Wong",
     "license": "MIT",
     "dependencies": {
-        "underscore": "^1.9.2"
+        "underscore": "^1.9.2",
+        "uni-app-axios": "^2.3.3"
     },
     "devDependencies": {
         "child_process": "^1.0.2",
@@ -90,7 +91,7 @@
         "webpack": "^4.41.5",
         "webpack-cli": "^3.3.10"
     },
-    "browser":{
+    "browser": {
         "child_process": false,
         "fs": false
     }

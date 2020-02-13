@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
 
@@ -16,7 +16,7 @@ var _HttpService = _interopRequireDefault(require("../services/HttpService"));
 var HttpServiceProvider =
 /*#__PURE__*/
 function (_ServiceProvider) {
-  (0, _inheritsLoose2.default)(HttpServiceProvider, _ServiceProvider);
+  (0, _inheritsLoose2["default"])(HttpServiceProvider, _ServiceProvider);
 
   function HttpServiceProvider() {
     return _ServiceProvider.apply(this, arguments) || this;
@@ -28,7 +28,7 @@ function (_ServiceProvider) {
     var _this = this;
 
     this._app.register('$httpClient', function () {
-      return new _HttpService.default(_this.app, _this.app.httpAdapterClass, _this.app.config('app.apiGateway'));
+      return new _HttpService["default"](_this.app, _this.app.httpAdapterClass, _this.app.config('app.apiGateway'));
     });
   };
 
@@ -37,6 +37,6 @@ function (_ServiceProvider) {
   };
 
   return HttpServiceProvider;
-}(_ServiceProvider2.default);
+}(_ServiceProvider2["default"]);
 
-exports.default = HttpServiceProvider;
+exports["default"] = HttpServiceProvider;

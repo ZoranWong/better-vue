@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
@@ -15,9 +15,9 @@ var Validator =
 /*#__PURE__*/
 function () {
   function Validator(app) {
-    (0, _defineProperty2.default)(this, "_app", null);
-    (0, _defineProperty2.default)(this, "_message", null);
-    (0, _defineProperty2.default)(this, "_validateMethods", {});
+    (0, _defineProperty2["default"])(this, "_app", null);
+    (0, _defineProperty2["default"])(this, "_message", null);
+    (0, _defineProperty2["default"])(this, "_validateMethods", {});
     this._app = app;
   }
 
@@ -29,7 +29,7 @@ function () {
 
       for (var i = 0; i < length; i++) {
         var _rules$key$i$split = rules[key][i].split(':'),
-            _rules$key$i$split2 = (0, _slicedToArray2.default)(_rules$key$i$split, 2),
+            _rules$key$i$split2 = (0, _slicedToArray2["default"])(_rules$key$i$split, 2),
             method = _rules$key$i$split2[0],
             param = _rules$key$i$split2[1];
 
@@ -52,4 +52,4 @@ function () {
   return Validator;
 }();
 
-exports.default = Validator;
+exports["default"] = Validator;

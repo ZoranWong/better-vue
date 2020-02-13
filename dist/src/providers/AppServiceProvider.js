@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
 
@@ -14,7 +14,7 @@ var _ServiceProvider2 = _interopRequireDefault(require("./ServiceProvider"));
 var AppServiceProvider =
 /*#__PURE__*/
 function (_ServiceProvider) {
-  (0, _inheritsLoose2.default)(AppServiceProvider, _ServiceProvider);
+  (0, _inheritsLoose2["default"])(AppServiceProvider, _ServiceProvider);
 
   function AppServiceProvider() {
     return _ServiceProvider.apply(this, arguments) || this;
@@ -27,6 +27,6 @@ function (_ServiceProvider) {
   };
 
   return AppServiceProvider;
-}(_ServiceProvider2.default);
+}(_ServiceProvider2["default"]);
 
-exports.default = AppServiceProvider;
+exports["default"] = AppServiceProvider;

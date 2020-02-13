@@ -7,7 +7,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -65,22 +65,22 @@ function () {
 
   /**@type {Store}*/
   function Application() {
-    (0, _defineProperty2.default)(this, "_instances", {});
-    (0, _defineProperty2.default)(this, "_mixinMethods", {});
-    (0, _defineProperty2.default)(this, "_serviceProviders", []);
-    (0, _defineProperty2.default)(this, "_config", {});
-    (0, _defineProperty2.default)(this, "_exceptionHandlers", {});
-    (0, _defineProperty2.default)(this, "_template", {});
-    (0, _defineProperty2.default)(this, "_route", null);
-    (0, _defineProperty2.default)(this, "_multiplePage", false);
-    (0, _defineProperty2.default)(this, "_registeredGlobal", true);
-    (0, _defineProperty2.default)(this, "_current", null);
-    (0, _defineProperty2.default)(this, "_currentRoute", null);
-    (0, _defineProperty2.default)(this, "_adapterClass", null);
-    (0, _defineProperty2.default)(this, "$store", null);
-    (0, _defineProperty2.default)(this, "_apiGateway", null);
-    (0, _defineProperty2.default)(this, "_httpAdapterClass", null);
-    (0, _defineProperty2.default)(this, "_appRoot", '');
+    (0, _defineProperty2["default"])(this, "_instances", {});
+    (0, _defineProperty2["default"])(this, "_mixinMethods", {});
+    (0, _defineProperty2["default"])(this, "_serviceProviders", []);
+    (0, _defineProperty2["default"])(this, "_config", {});
+    (0, _defineProperty2["default"])(this, "_exceptionHandlers", {});
+    (0, _defineProperty2["default"])(this, "_template", {});
+    (0, _defineProperty2["default"])(this, "_route", null);
+    (0, _defineProperty2["default"])(this, "_multiplePage", false);
+    (0, _defineProperty2["default"])(this, "_registeredGlobal", true);
+    (0, _defineProperty2["default"])(this, "_current", null);
+    (0, _defineProperty2["default"])(this, "_currentRoute", null);
+    (0, _defineProperty2["default"])(this, "_adapterClass", null);
+    (0, _defineProperty2["default"])(this, "$store", null);
+    (0, _defineProperty2["default"])(this, "_apiGateway", null);
+    (0, _defineProperty2["default"])(this, "_httpAdapterClass", null);
+    (0, _defineProperty2["default"])(this, "_appRoot", '');
   }
 
   var _proto = Application.prototype;
@@ -176,7 +176,7 @@ function () {
     var modelInstance = Application._modelContainer[name] = new model(this);
     modelInstance.modelName = name;
 
-    if (modelInstance instanceof _Collection.default) {
+    if (modelInstance instanceof _Collection["default"]) {
       modelInstance = (0, _helpers.collectionProxy)(modelInstance);
       this.register("".concat(prefix, ".").concat(name), modelInstance);
     } else {
@@ -204,9 +204,9 @@ function () {
   _proto.command =
   /*#__PURE__*/
   function () {
-    var _command = (0, _asyncToGenerator2.default)(
+    var _command = (0, _asyncToGenerator2["default"])(
     /*#__PURE__*/
-    _regenerator.default.mark(function _callee(commandName) {
+    _regenerator["default"].mark(function _callee(commandName) {
       var _command3,
           _command2,
           _len,
@@ -214,7 +214,7 @@ function () {
           _key,
           _args = arguments;
 
-      return _regenerator.default.wrap(function _callee$(_context) {
+      return _regenerator["default"].wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
@@ -497,7 +497,7 @@ function () {
     this[key] = method;
   };
 
-  (0, _createClass2.default)(Application, [{
+  (0, _createClass2["default"])(Application, [{
     key: "apiGateWay",
     get: function get() {
       return this._apiGateway;
@@ -526,9 +526,9 @@ function () {
   return Application;
 }();
 
-exports.default = Application;
-(0, _defineProperty2.default)(Application, "_commandContainer", {});
-(0, _defineProperty2.default)(Application, "_modelContainer", {});
-(0, _defineProperty2.default)(Application, "_globalProviderRegistered", {});
-(0, _defineProperty2.default)(Application, "_instanceContainer", {});
-(0, _defineProperty2.default)(Application, "_pageContainer", []);
+exports["default"] = Application;
+(0, _defineProperty2["default"])(Application, "_commandContainer", {});
+(0, _defineProperty2["default"])(Application, "_modelContainer", {});
+(0, _defineProperty2["default"])(Application, "_globalProviderRegistered", {});
+(0, _defineProperty2["default"])(Application, "_instanceContainer", {});
+(0, _defineProperty2["default"])(Application, "_pageContainer", []);

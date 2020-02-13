@@ -23,16 +23,16 @@ var _CreateResponseCommand = _interopRequireDefault(require("./commands/CreateRe
 
 var _CreateConsoleCommand = _interopRequireDefault(require("./commands/CreateConsoleCommand"));
 
-var program = new _commander.default.Command();
-var application = new _Application.default();
-application.registerConfig(_app.default);
-application.registerCommand('service:create', _CreateServiceCommand.default);
-application.registerCommand('provider:create', _CreateServiceProviderCommand.default);
-application.registerCommand('model:create', _CreateModelCommand.default);
-application.registerCommand('middleware:create', _CreateMiddlewareCommand.default);
-application.registerCommand('request:create', _CreateRequestCommand.default);
-application.registerCommand('response:create', _CreateResponseCommand.default);
-application.registerCommand('console:create', _CreateConsoleCommand.default);
+var program = new _commander["default"].Command();
+var application = new _Application["default"]();
+application.registerConfig(_app["default"]);
+application.registerCommand('service:create', _CreateServiceCommand["default"]);
+application.registerCommand('provider:create', _CreateServiceProviderCommand["default"]);
+application.registerCommand('model:create', _CreateModelCommand["default"]);
+application.registerCommand('middleware:create', _CreateMiddlewareCommand["default"]);
+application.registerCommand('request:create', _CreateRequestCommand["default"]);
+application.registerCommand('response:create', _CreateResponseCommand["default"]);
+application.registerCommand('console:create', _CreateConsoleCommand["default"]);
 program.version('0.0.1').option('--root <root>', 'set root path', 'src').option('--dir <dir>', 'set file dir', '').option('--superClass <super>', 'set parent class', '').option('--method <method>', 'set http method', 'GET');
 program.usage('better <cmd> <className> [options]').description('create better-vue provider, service or model').arguments('<cmd> <className> [options]').action(function (cmd, className) {
   var dir = program['root'] + '/' + program['dir'];

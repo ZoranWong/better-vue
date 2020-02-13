@@ -3,8 +3,8 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var VuexAdapter = function VuexAdapter() {};
 
-exports.default = VuexAdapter;
+exports["default"] = VuexAdapter;

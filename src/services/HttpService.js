@@ -2,17 +2,20 @@ import Service from "./Service";
 import Pipeline from "../pipe/Pipeline";
 import {isClass} from "../utils/helpers";
 import Response from '../responses/Response';
-
+import HttpAdapter from '../contracts/HttpAdapter';
 export default class HttpService extends Service {
+    /**@type {HttpAdapter} _httpAdapter*/
     _httpClient = null;
     _headers = {};
     _host = null;
     _withCredentials = false;
+    /**@type {Pipeline} _middlewarePipeline*/
     _middlewarePipeline = null;
     _config = {
         xsrfCookieName: 'XSRF-TOKEN', // default
         xsrfHeaderName: 'X-XSRF-TOKEN', // 默认的
     };
+    /**@type {Function} _httpAdapter*/
     _httpAdapter = null;
     _requestTransformers = [];
     _responseTransformers = [];
@@ -79,20 +82,25 @@ export default class HttpService extends Service {
     async send (request, responser = Response) {
         this._middleware.apply(this, request._middlewares);
         if (!this._httpClient && this._httpAdapter) {
-            if (isClass(this._httpAdapter)) {
-                this._httpClient = new this._httpAdapter(this._config);
-            } else {
-                this._httpClient = this._httpAdapter(this._config);
-            }
+            console.log('--------------- 22222 -----------', isClass(this._httpAdapter), this._httpAdapter);
+            this._httpClient = new this._httpAdapter(this._config);
         }
+
         return await this._middlewarePipeline.send((() => {
             request = this._validate(request);
             return request;
         })()).then(async (request) => {
             if (this._httpClient) {
-                let result = await this._httpClient.send(request, responser);
+                // console.log('------- http client --------', this._httpClient);
+                try {
+                    let result = await this._httpClient.send(request, responser);
 
-                return result;
+                    return result;
+                }catch (e) {
+                    console.log('==================', e);
+                    return false;
+                }
+
             }
             return null;
         });

@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -21,10 +21,10 @@ var Pipeline =
 /*#__PURE__*/
 function () {
   function Pipeline(container) {
-    (0, _defineProperty2.default)(this, "_container", null);
-    (0, _defineProperty2.default)(this, "_passable", null);
-    (0, _defineProperty2.default)(this, "_pipes", []);
-    (0, _defineProperty2.default)(this, "_method", 'handle');
+    (0, _defineProperty2["default"])(this, "_container", null);
+    (0, _defineProperty2["default"])(this, "_passable", null);
+    (0, _defineProperty2["default"])(this, "_pipes", []);
+    (0, _defineProperty2["default"])(this, "_method", 'handle');
     this._container = container;
   }
 
@@ -40,7 +40,7 @@ function () {
       pipes[_key] = arguments[_key];
     }
 
-    this._pipes = _underscore.default.isArray(pipes) ? pipes : Array.from(arguments);
+    this._pipes = _underscore["default"].isArray(pipes) ? pipes : Array.from(arguments);
     return this;
   };
 
@@ -52,20 +52,20 @@ function () {
   _proto.then =
   /*#__PURE__*/
   function () {
-    var _then = (0, _asyncToGenerator2.default)(
+    var _then = (0, _asyncToGenerator2["default"])(
     /*#__PURE__*/
-    _regenerator.default.mark(function _callee(destination) {
+    _regenerator["default"].mark(function _callee(destination) {
       var _this = this;
 
       var pipes, pipeline, result;
-      return _regenerator.default.wrap(function _callee$(_context) {
+      return _regenerator["default"].wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               pipes = this._pipes.reverse();
               pipeline = pipes.reduce(this._carry(), this._prepareDestination(destination));
 
-              if (!_underscore.default.isFunction(pipeline)) {
+              if (!_underscore["default"].isFunction(pipeline)) {
                 _context.next = 8;
                 break;
               }
@@ -109,10 +109,10 @@ function () {
   _proto.thenReturn =
   /*#__PURE__*/
   function () {
-    var _thenReturn = (0, _asyncToGenerator2.default)(
+    var _thenReturn = (0, _asyncToGenerator2["default"])(
     /*#__PURE__*/
-    _regenerator.default.mark(function _callee2() {
-      return _regenerator.default.wrap(function _callee2$(_context2) {
+    _regenerator["default"].mark(function _callee2() {
+      return _regenerator["default"].wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
@@ -143,10 +143,10 @@ function () {
     return (
       /*#__PURE__*/
       function () {
-        var _ref = (0, _asyncToGenerator2.default)(
+        var _ref = (0, _asyncToGenerator2["default"])(
         /*#__PURE__*/
-        _regenerator.default.mark(function _callee3(passable) {
-          return _regenerator.default.wrap(function _callee3$(_context3) {
+        _regenerator["default"].mark(function _callee3(passable) {
+          return _regenerator["default"].wrap(function _callee3$(_context3) {
             while (1) {
               switch (_context3.prev = _context3.next) {
                 case 0:
@@ -177,25 +177,25 @@ function () {
     return (
       /*#__PURE__*/
       function () {
-        var _ref2 = (0, _asyncToGenerator2.default)(
+        var _ref2 = (0, _asyncToGenerator2["default"])(
         /*#__PURE__*/
-        _regenerator.default.mark(function _callee5(stack, pipe) {
-          return _regenerator.default.wrap(function _callee5$(_context5) {
+        _regenerator["default"].mark(function _callee5(stack, pipe) {
+          return _regenerator["default"].wrap(function _callee5$(_context5) {
             while (1) {
               switch (_context5.prev = _context5.next) {
                 case 0:
                   return _context5.abrupt("return",
                   /*#__PURE__*/
                   function () {
-                    var _ref3 = (0, _asyncToGenerator2.default)(
+                    var _ref3 = (0, _asyncToGenerator2["default"])(
                     /*#__PURE__*/
-                    _regenerator.default.mark(function _callee4(passable) {
+                    _regenerator["default"].mark(function _callee4(passable) {
                       var result;
-                      return _regenerator.default.wrap(function _callee4$(_context4) {
+                      return _regenerator["default"].wrap(function _callee4$(_context4) {
                         while (1) {
                           switch (_context4.prev = _context4.next) {
                             case 0:
-                              if (!(_underscore.default.isFunction(pipe) && !(0, _helpers.isClass)(pipe))) {
+                              if (!(_underscore["default"].isFunction(pipe) && !(0, _helpers.isClass)(pipe))) {
                                 _context4.next = 6;
                                 break;
                               }
@@ -207,7 +207,7 @@ function () {
                               return _context4.abrupt("return", _context4.sent);
 
                             case 6:
-                              if (_underscore.default.isString(pipe)) {
+                              if (_underscore["default"].isString(pipe)) {
                                 pipe = _this2._container[pipe];
                               } else if ((0, _helpers.isClass)(pipe)) {
                                 pipe = new pipe();
@@ -265,4 +265,4 @@ function () {
   return Pipeline;
 }();
 
-exports.default = Pipeline;
+exports["default"] = Pipeline;

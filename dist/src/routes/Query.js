@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
@@ -18,8 +18,8 @@ var Query =
 function () {
   function Query() {
     var query = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-    (0, _defineProperty2.default)(this, "_queryString", null);
-    (0, _defineProperty2.default)(this, "_params", {});
+    (0, _defineProperty2["default"])(this, "_queryString", null);
+    (0, _defineProperty2["default"])(this, "_params", {});
 
     if (query) {
       if ((0, _underscore.isString)(query)) {
@@ -40,7 +40,7 @@ function () {
 
   _proto._convertQueryStr = function _convertQueryStr() {};
 
-  (0, _createClass2.default)(Query, [{
+  (0, _createClass2["default"])(Query, [{
     key: "queryString",
     set: function set(str) {
       this._queryString = str;
@@ -68,4 +68,4 @@ function () {
   return Query;
 }();
 
-exports.default = Query;
+exports["default"] = Query;

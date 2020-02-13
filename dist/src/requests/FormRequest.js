@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
@@ -27,13 +27,13 @@ function () {
   /**@type {Function}*/
   function FormRequest(data) {
     var method = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : HTTP_GET;
-    (0, _defineProperty2.default)(this, "_data", {});
-    (0, _defineProperty2.default)(this, "_method", null);
-    (0, _defineProperty2.default)(this, "_uri", null);
-    (0, _defineProperty2.default)(this, "_headers", {});
-    (0, _defineProperty2.default)(this, "_query", {});
-    (0, _defineProperty2.default)(this, "_middlewares", []);
-    (0, _defineProperty2.default)(this, "_response", null);
+    (0, _defineProperty2["default"])(this, "_data", {});
+    (0, _defineProperty2["default"])(this, "_method", null);
+    (0, _defineProperty2["default"])(this, "_uri", null);
+    (0, _defineProperty2["default"])(this, "_headers", {});
+    (0, _defineProperty2["default"])(this, "_query", {});
+    (0, _defineProperty2["default"])(this, "_middlewares", []);
+    (0, _defineProperty2["default"])(this, "_response", null);
     this._method = method;
 
     if (this._method === HTTP_DELETE || this._method === HTTP_HEAD || this._method === HTTP_GET) {
@@ -93,7 +93,7 @@ function () {
     return res;
   };
 
-  (0, _createClass2.default)(FormRequest, [{
+  (0, _createClass2["default"])(FormRequest, [{
     key: "query",
     get: function get() {
       return this._method === HTTP_DELETE || this._method === HTTP_HEAD || this._method === HTTP_GET ? this._query : {};
@@ -150,9 +150,9 @@ function () {
   return FormRequest;
 }();
 
-exports.default = FormRequest;
-(0, _defineProperty2.default)(FormRequest, "GET", HTTP_GET);
-(0, _defineProperty2.default)(FormRequest, "POST", HTTP_POST);
-(0, _defineProperty2.default)(FormRequest, "PUT", HTTP_PUT);
-(0, _defineProperty2.default)(FormRequest, "DELETE", HTTP_DELETE);
-(0, _defineProperty2.default)(FormRequest, "HEAD", HTTP_HEAD);
+exports["default"] = FormRequest;
+(0, _defineProperty2["default"])(FormRequest, "GET", HTTP_GET);
+(0, _defineProperty2["default"])(FormRequest, "POST", HTTP_POST);
+(0, _defineProperty2["default"])(FormRequest, "PUT", HTTP_PUT);
+(0, _defineProperty2["default"])(FormRequest, "DELETE", HTTP_DELETE);
+(0, _defineProperty2["default"])(FormRequest, "HEAD", HTTP_HEAD);

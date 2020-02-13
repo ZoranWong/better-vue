@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
@@ -26,14 +26,14 @@ function () {
 
   /**@type {Application}*/
   function Model(app) {
-    (0, _defineProperty2.default)(this, "namespaced", true);
-    (0, _defineProperty2.default)(this, "modelName", '');
-    (0, _defineProperty2.default)(this, "state", {});
-    (0, _defineProperty2.default)(this, "getters", {});
-    (0, _defineProperty2.default)(this, "actions", {});
-    (0, _defineProperty2.default)(this, "mutations", {});
-    (0, _defineProperty2.default)(this, "_request", null);
-    (0, _defineProperty2.default)(this, "_store", null);
+    (0, _defineProperty2["default"])(this, "namespaced", true);
+    (0, _defineProperty2["default"])(this, "modelName", '');
+    (0, _defineProperty2["default"])(this, "state", {});
+    (0, _defineProperty2["default"])(this, "getters", {});
+    (0, _defineProperty2["default"])(this, "actions", {});
+    (0, _defineProperty2["default"])(this, "mutations", {});
+    (0, _defineProperty2["default"])(this, "_request", null);
+    (0, _defineProperty2["default"])(this, "_store", null);
     Model._app = app;
   }
 
@@ -96,7 +96,7 @@ function () {
     return result;
   };
 
-  (0, _createClass2.default)(Model, [{
+  (0, _createClass2["default"])(Model, [{
     key: "app",
     get: function get() {
       return Model._app;
@@ -105,5 +105,5 @@ function () {
   return Model;
 }();
 
-exports.default = Model;
-(0, _defineProperty2.default)(Model, "_app", null);
+exports["default"] = Model;
+(0, _defineProperty2["default"])(Model, "_app", null);

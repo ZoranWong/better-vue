@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
@@ -17,6 +17,8 @@ var _axios = require("axios");
 
 var _flyio = require("flyio");
 
+var _underscore = require("underscore");
+
 var HttpAdapter =
 /*#__PURE__*/
 function () {
@@ -24,29 +26,39 @@ function () {
 
   /**@type {AxiosInstance|Fly}*/
   function HttpAdapter(config) {
-    (0, _defineProperty2.default)(this, "_config", {});
-    (0, _defineProperty2.default)(this, "_client", null);
+    (0, _defineProperty2["default"])(this, "_config", {});
+    (0, _defineProperty2["default"])(this, "_client", null);
     this._config = config;
   }
-  /**@type {FormRequest}*/
-
 
   var _proto = HttpAdapter.prototype;
 
-  _proto.send = function send(request, responser) {
+  _proto.response = function response(responseClass, _response) {};
+
+  _proto.headers = function headers(_headers) {
+    var header = {};
+    (0, _underscore.each)(_headers, function (value, key) {
+      header[key] = (0, _underscore.isArray)(value) ? value[0] : value;
+    });
+    return header;
+  }
+  /**@type {FormRequest}*/
+  ;
+
+  _proto.send = function send(request, responseClass) {
     var _this = this;
 
     return new Promise(function (resolve, reject) {
       if (_this._client) {
-        /**@type {AxiosRequestConfig|FlyRequestConfig}*/
-        var requestConfig = _this.request(request);
         /**@type {AxiosResponse} response*/
+        _this.request(request).then(function (response) {
+          console.log(response, '==============');
 
+          var res = _this.response(responseClass, response);
 
-        _this._client.request(requestConfig).then(function (response) {
-          var res = new responser(response.status, response.headers, response.data);
           resolve(request.response(res));
         }, function (reason) {
+          console.log('----------- reason ------', reason);
           reject(reason);
         });
       } else {
@@ -59,7 +71,7 @@ function () {
     return {};
   };
 
-  (0, _createClass2.default)(HttpAdapter, [{
+  (0, _createClass2["default"])(HttpAdapter, [{
     key: "config",
     get: function get() {
       return this._config;
@@ -68,4 +80,4 @@ function () {
   return HttpAdapter;
 }();
 
-exports.default = HttpAdapter;
+exports["default"] = HttpAdapter;

@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -28,7 +28,7 @@ var _fs = _interopRequireDefault(require("fs"));
 var NodeCommand =
 /*#__PURE__*/
 function (_BaseCommand) {
-  (0, _inheritsLoose2.default)(NodeCommand, _BaseCommand);
+  (0, _inheritsLoose2["default"])(NodeCommand, _BaseCommand);
 
   /**
    * @param {Application} application
@@ -37,7 +37,7 @@ function (_BaseCommand) {
     var _this;
 
     _this = _BaseCommand.call(this, application) || this;
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "_args", {});
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_args", {});
     return _this;
   }
   /**
@@ -50,26 +50,26 @@ function (_BaseCommand) {
   var _proto = NodeCommand.prototype;
 
   _proto._command = function _command(shellCommand) {
-    if (typeof _shelljs.default[shellCommand] === 'function') {
+    if (typeof _shelljs["default"][shellCommand] === 'function') {
       for (var _len = arguments.length, params = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
         params[_key - 1] = arguments[_key];
       }
 
-      return _shelljs.default[shellCommand].apply(_shelljs.default, params);
+      return _shelljs["default"][shellCommand].apply(_shelljs["default"], params);
     }
 
     return false;
   };
 
   _proto.mkdir = function mkdir(dir) {
-    if (!_fs.default.existsSync(dir)) {
+    if (!_fs["default"].existsSync(dir)) {
       this._command('mkdir', dir);
     }
   };
 
   _proto.mkFile = function mkFile(file, content) {
-    if (!_fs.default.existsSync(file)) {
-      _fs.default.appendFileSync(file, content, 'utf8');
+    if (!_fs["default"].existsSync(file)) {
+      _fs["default"].appendFileSync(file, content, 'utf8');
     }
   }
   /**
@@ -81,10 +81,10 @@ function (_BaseCommand) {
   _proto.handle =
   /*#__PURE__*/
   function () {
-    var _handle = (0, _asyncToGenerator2.default)(
+    var _handle = (0, _asyncToGenerator2["default"])(
     /*#__PURE__*/
-    _regenerator.default.mark(function _callee(dir, className, parent) {
-      return _regenerator.default.wrap(function _callee$(_context) {
+    _regenerator["default"].mark(function _callee(dir, className, parent) {
+      return _regenerator["default"].wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
@@ -112,6 +112,6 @@ function (_BaseCommand) {
   };
 
   return NodeCommand;
-}(_Command.default);
+}(_Command["default"]);
 
-exports.default = NodeCommand;
+exports["default"] = NodeCommand;

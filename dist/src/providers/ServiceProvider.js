@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
@@ -22,7 +22,7 @@ function () {
    * @param {Application}
    * */
   function ServiceProvider(application) {
-    (0, _defineProperty2.default)(this, "_app", null);
+    (0, _defineProperty2["default"])(this, "_app", null);
     this._app = application;
   }
 
@@ -32,7 +32,7 @@ function () {
 
   _proto.boot = function boot() {};
 
-  (0, _createClass2.default)(ServiceProvider, [{
+  (0, _createClass2["default"])(ServiceProvider, [{
     key: "app",
     get: function get() {
       return this._app;
@@ -41,4 +41,4 @@ function () {
   return ServiceProvider;
 }();
 
-exports.default = ServiceProvider;
+exports["default"] = ServiceProvider;

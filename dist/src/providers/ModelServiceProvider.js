@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
 
@@ -18,7 +18,7 @@ var _vuex = _interopRequireDefault(require("vuex"));
 var ModelServiceProvider =
 /*#__PURE__*/
 function (_ServiceProvider) {
-  (0, _inheritsLoose2.default)(ModelServiceProvider, _ServiceProvider);
+  (0, _inheritsLoose2["default"])(ModelServiceProvider, _ServiceProvider);
 
   function ModelServiceProvider() {
     return _ServiceProvider.apply(this, arguments) || this;
@@ -48,6 +48,6 @@ function (_ServiceProvider) {
   };
 
   return ModelServiceProvider;
-}(_ServiceProvider2.default);
+}(_ServiceProvider2["default"]);
 
-exports.default = ModelServiceProvider;
+exports["default"] = ModelServiceProvider;

@@ -20,6 +20,10 @@ export default class WXFlyioAdapter extends HttpAdapter {
         flyRequest.url = request.uri;
         flyRequest.params = request.query;
         flyRequest.body = request.data;
-        return flyRequest;
+        return this._client.request(flyRequest);
+    }
+
+    response(responseClass, response) {
+        return new responseClass(response.status, this.headers(response.headers), response.data);
     }
 }

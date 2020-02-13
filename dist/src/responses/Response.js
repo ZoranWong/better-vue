@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
@@ -15,9 +15,9 @@ var Response =
 /*#__PURE__*/
 function () {
   function Response(status, headers, body) {
-    (0, _defineProperty2.default)(this, "_status", null);
-    (0, _defineProperty2.default)(this, "_body", null);
-    (0, _defineProperty2.default)(this, "_headers", null);
+    (0, _defineProperty2["default"])(this, "_status", null);
+    (0, _defineProperty2["default"])(this, "_body", null);
+    (0, _defineProperty2["default"])(this, "_headers", null);
     this._body = body;
     this._status = status;
     this._headers = headers;
@@ -29,7 +29,7 @@ function () {
     console.log('_parse in super class ');
   };
 
-  (0, _createClass2.default)(Response, [{
+  (0, _createClass2["default"])(Response, [{
     key: "status",
     get: function get() {
       return this._status;
@@ -48,4 +48,4 @@ function () {
   return Response;
 }();
 
-exports.default = Response;
+exports["default"] = Response;

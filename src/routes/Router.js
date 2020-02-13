@@ -1,16 +1,20 @@
 import {each} from 'underscore';
 import Route from "./Route";
-
+import Application from "../Application";
 export default class Router {
     /**@type {Route} current*/
     _current = null;
+    /**@type {Application} _app*/
+    _app = null;
     /**@type {Object.<string, Object.<string, any>>} _routes*/
     _routes = {};
 
     /**
+     * @param {Application} app
      * @param {[Object.<string, any>]} routes
      * */
-    constructor (routes = []) {
+    constructor (app, routes = []) {
+        this._app = app;
         each(routes, (route) => {
             this.addRoute(route);
         });

@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
@@ -20,7 +20,7 @@ function () {
 
   /**@type {Application} application*/
   function Command(application) {
-    (0, _defineProperty2.default)(this, "_app", null);
+    (0, _defineProperty2["default"])(this, "_app", null);
     this._app = application;
   }
 
@@ -30,7 +30,7 @@ function () {
 
   Command.commandName = function commandName() {};
 
-  (0, _createClass2.default)(Command, [{
+  (0, _createClass2["default"])(Command, [{
     key: "app",
     get: function get() {
       return this._app;
@@ -44,4 +44,4 @@ function () {
   return Command;
 }();
 
-exports.default = Command;
+exports["default"] = Command;

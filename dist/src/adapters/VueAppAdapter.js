@@ -7,7 +7,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
 
@@ -29,14 +29,14 @@ var _Application = _interopRequireDefault(require("../Application"));
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-_vue.default.use(_vuex.default);
+_vue["default"].use(_vuex["default"]);
 
 var VueAppAdapter =
 /*#__PURE__*/
 function (_AppAdapter) {
-  (0, _inheritsLoose2.default)(VueAppAdapter, _AppAdapter);
+  (0, _inheritsLoose2["default"])(VueAppAdapter, _AppAdapter);
 
   /**@type {Function}*/
 
@@ -65,14 +65,14 @@ function (_AppAdapter) {
     var _this;
 
     _this = _AppAdapter.call(this, component, application, route) || this;
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "_mounted", null);
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "_created", null);
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "_updated", null);
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "_destroyed", null);
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "_beforeCreate", null);
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "_beforeUpdate", null);
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "_beforeMount", null);
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "_beforeDestroy", null);
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_mounted", null);
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_created", null);
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_updated", null);
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_destroyed", null);
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_beforeCreate", null);
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_beforeUpdate", null);
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_beforeMount", null);
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_beforeDestroy", null);
 
     _this.mixin(application._instances);
 
@@ -88,9 +88,9 @@ function (_AppAdapter) {
     _this._destroyed = _this._mountComponent.destroyed;
     _this._mountComponent = _this.rebuildComponent(store);
     store = new _vuex.Store(store);
-    _vue.default.prototype.$store = application.$store = store;
+    _vue["default"].prototype.$store = application.$store = store;
     _this._page = vue(_objectSpread({}, _this._mountComponent));
-    _this._page['$adapter'] = (0, _assertThisInitialized2.default)(_this);
+    _this._page['$adapter'] = (0, _assertThisInitialized2["default"])(_this);
     (0, _underscore.extend)(_this._page, application._instances);
     return _this;
   }
@@ -163,10 +163,10 @@ function (_AppAdapter) {
   };
 
   _proto.mixin = function mixin(mixins) {
-    (0, _underscore.extend)(_vue.default.prototype, mixins);
+    (0, _underscore.extend)(_vue["default"].prototype, mixins);
   };
 
   return VueAppAdapter;
-}(_AppAdapter2.default);
+}(_AppAdapter2["default"]);
 
-exports.default = VueAppAdapter;
+exports["default"] = VueAppAdapter;

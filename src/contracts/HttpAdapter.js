@@ -1,6 +1,7 @@
 import FormRequest from '../requests/FormRequest';
 import {AxiosInstance, AxiosProxyConfig, AxiosResponse, AxiosRequestConfig} from 'axios';
 import {Fly, FlyRequestConfig} from 'flyio';
+import {each, isArray} from "underscore";
 
 export default class HttpAdapter {
     /**@type {AxiosProxyConfig}*/
@@ -12,17 +13,27 @@ export default class HttpAdapter {
         this._config = config;
     }
 
+    response(responseClass, response){
+
+    }
+    headers(headers) {
+        let header = {};
+        each(headers, (value, key) => {
+            header[key] = isArray(value) ? value[0] : value;
+        });
+        return header;
+    }
     /**@type {FormRequest}*/
-    send (request, responser) {
+    send (request, responseClass) {
         return new Promise((resolve, reject) => {
             if (this._client) {
-                /**@type {AxiosRequestConfig|FlyRequestConfig}*/
-                let requestConfig =  this.request(request);
                 /**@type {AxiosResponse} response*/
-                this._client.request(requestConfig).then((response) => {
-                    let res = new responser(response.status, response.headers, response.data);
+                this.request(request).then((response) => {
+                    console.log(response, '==============');
+                    let res = this.response(responseClass, response);
                     resolve(request.response(res));
                 }, (reason) => {
+                    console.log('----------- reason ------', reason);
                     reject(reason);
                 });
             } else {

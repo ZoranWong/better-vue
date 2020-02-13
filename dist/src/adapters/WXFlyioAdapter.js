@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
 
@@ -18,7 +18,7 @@ var _flyio = require("flyio");
 var WXFlyioAdapter =
 /*#__PURE__*/
 function (_HttpAdapter) {
-  (0, _inheritsLoose2.default)(WXFlyioAdapter, _HttpAdapter);
+  (0, _inheritsLoose2["default"])(WXFlyioAdapter, _HttpAdapter);
 
   /**
   * @param {FlyRequestConfig} config
@@ -27,7 +27,7 @@ function (_HttpAdapter) {
     var _this;
 
     _this = _HttpAdapter.call(this, config) || this;
-    _this._client = new _wx.default();
+    _this._client = new _wx["default"]();
     return _this;
   }
 
@@ -42,10 +42,14 @@ function (_HttpAdapter) {
     flyRequest.url = _request.uri;
     flyRequest.params = _request.query;
     flyRequest.body = _request.data;
-    return flyRequest;
+    return this._client.request(flyRequest);
+  };
+
+  _proto.response = function response(responseClass, _response) {
+    return new responseClass(_response.status, this.headers(_response.headers), _response.data);
   };
 
   return WXFlyioAdapter;
-}(_HttpAdapter2.default);
+}(_HttpAdapter2["default"]);
 
-exports.default = WXFlyioAdapter;
+exports["default"] = WXFlyioAdapter;

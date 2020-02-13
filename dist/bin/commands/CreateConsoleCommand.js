@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _inheritsLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/inheritsLoose"));
 
@@ -14,7 +14,7 @@ var _NodeCommand = _interopRequireDefault(require("./NodeCommand"));
 var CreateConsoleCommand =
 /*#__PURE__*/
 function (_Command) {
-  (0, _inheritsLoose2.default)(CreateConsoleCommand, _Command);
+  (0, _inheritsLoose2["default"])(CreateConsoleCommand, _Command);
 
   function CreateConsoleCommand() {
     return _Command.apply(this, arguments) || this;
@@ -28,6 +28,6 @@ function (_Command) {
   };
 
   return CreateConsoleCommand;
-}(_NodeCommand.default);
+}(_NodeCommand["default"]);
 
-exports.default = CreateConsoleCommand;
+exports["default"] = CreateConsoleCommand;

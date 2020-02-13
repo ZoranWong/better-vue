@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
@@ -13,8 +13,8 @@ var ExceptionHandler =
 /*#__PURE__*/
 function () {
   function ExceptionHandler(app, exception) {
-    (0, _defineProperty2.default)(this, "_app", null);
-    (0, _defineProperty2.default)(this, "_exception", null);
+    (0, _defineProperty2["default"])(this, "_app", null);
+    (0, _defineProperty2["default"])(this, "_exception", null);
     this._app = app;
     this._exception = exception;
   }
@@ -34,4 +34,4 @@ function () {
   return ExceptionHandler;
 }();
 
-exports.default = ExceptionHandler;
+exports["default"] = ExceptionHandler;

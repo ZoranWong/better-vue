@@ -7,7 +7,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
@@ -28,10 +28,10 @@ function () {
 
   /**@type {Vue}*/
   function AppAdapter(component, application, route) {
-    (0, _defineProperty2.default)(this, "_mountComponent", null);
-    (0, _defineProperty2.default)(this, "_app", null);
-    (0, _defineProperty2.default)(this, "_route", null);
-    (0, _defineProperty2.default)(this, "_page", null);
+    (0, _defineProperty2["default"])(this, "_mountComponent", null);
+    (0, _defineProperty2["default"])(this, "_app", null);
+    (0, _defineProperty2["default"])(this, "_route", null);
+    (0, _defineProperty2["default"])(this, "_page", null);
     this._mountComponent = component;
     this._app = application;
     this._route = route;
@@ -52,4 +52,4 @@ function () {
   return AppAdapter;
 }();
 
-exports.default = AppAdapter;
+exports["default"] = AppAdapter;

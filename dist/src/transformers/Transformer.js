@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var Transformer =
 /*#__PURE__*/
@@ -19,4 +19,4 @@ function () {
   return Transformer;
 }();
 
-exports.default = Transformer;
+exports["default"] = Transformer;
