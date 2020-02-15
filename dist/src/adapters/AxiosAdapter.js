@@ -24,16 +24,7 @@ function (_HttpAdapter) {
     var _this;
 
     _this = _HttpAdapter.call(this, config) || this;
-    var axios = (0, _uniAppAxios["default"])({
-      url: _this._config['host'],
-      //默认的接口后缀
-      dataType: 'json',
-      //默认的返回类型
-      responseType: 'json',
-      header: {
-        'content-type': "application/json"
-      }
-    });
+    var axios = (0, _uniAppAxios["default"])();
     _this._client = axios;
     return _this;
   }
@@ -50,10 +41,20 @@ function (_HttpAdapter) {
     axiosRequest.url = _request.uri;
     axiosRequest.params = _request.query;
     axiosRequest.data = _request.data;
-    return this._client.create({
+
+    var api = this._client.create({
+      url: this._config['host'],
+      dataType: 'json',
+      //默认的返回类型
+      responseType: 'text',
       method: method,
-      header: _request.headers
-    })(_request.uri, (0, _underscore.extend)(_request.query, _request.data));
+      header: (0, _underscore.extend)(_request.headers, {
+        'content-type': "application/json"
+      })
+    });
+
+    console.log(api);
+    return api(_request.uri, (0, _underscore.extend)(_request.query, _request.data));
   };
 
   _proto.response = function response(responseClass, _response) {

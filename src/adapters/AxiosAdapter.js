@@ -5,14 +5,7 @@ import {extend} from 'underscore';
 export default class AxiosAdapter extends HttpAdapter {
     constructor(config) {
         super(config);
-        let axios = Axios({
-            url: this._config['host'],//默认的接口后缀
-            dataType: 'json',//默认的返回类型
-            responseType: 'json',
-            header: {
-                'content-type': "application/json"
-            }
-        });
+        let axios = Axios();
         this._client = axios;
     }
 
@@ -24,10 +17,17 @@ export default class AxiosAdapter extends HttpAdapter {
         axiosRequest.url = request.uri;
         axiosRequest.params = request.query;
         axiosRequest.data = request.data;
-        return this._client.create({
+        let api = this._client.create({
+            url: this._config['host'],
+            dataType: 'json',//默认的返回类型
+            responseType: 'text',
             method: method,
-            header: request.headers
-        })(request.uri, extend(request.query, request.data));
+            header: extend(request.headers, {
+                'content-type': "application/json"
+            })
+        });
+        console.log(api);
+        return api(request.uri, extend(request.query, request.data));
     }
 
     response(responseClass, response) {
