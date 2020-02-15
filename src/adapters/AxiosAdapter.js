@@ -26,7 +26,6 @@ export default class AxiosAdapter extends HttpAdapter {
                 'content-type': "application/json"
             })
         });
-        console.log(api);
         return api(request.uri, extend(request.query, request.data));
     }
 

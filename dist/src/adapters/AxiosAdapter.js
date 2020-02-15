@@ -53,7 +53,6 @@ function (_HttpAdapter) {
       })
     });
 
-    console.log(api);
     return api(_request.uri, (0, _underscore.extend)(_request.query, _request.data));
   };
 
