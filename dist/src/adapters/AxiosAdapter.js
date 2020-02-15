@@ -24,24 +24,36 @@ function (_HttpAdapter) {
     var _this;
 
     _this = _HttpAdapter.call(this, config) || this;
-    var axios = (0, _uniAppAxios["default"])();
-    _this._config['url'] = _this._config['host'];
-    _this._client = axios.create(_this._config);
+    var axios = (0, _uniAppAxios["default"])({
+      url: _this._config['host'],
+      //默认的接口后缀
+      dataType: 'json',
+      //默认的返回类型
+      responseType: 'json',
+      header: {
+        'content-type': "application/json"
+      }
+    });
+    _this._client = axios;
     return _this;
   }
 
   var _proto = AxiosAdapter.prototype;
 
   _proto.request = function request(_request) {
-    /**@type {AxiosRequestConfig}*/
     var axiosRequest = {}; // axiosRequest.baseURL = this.config['host'];
 
-    axiosRequest.headers = _request.headers;
-    axiosRequest.method = _request.method.toLowerCase();
+    axiosRequest.header = _request.headers;
+
+    var method = _request.method.toLowerCase();
+
     axiosRequest.url = _request.uri;
     axiosRequest.params = _request.query;
     axiosRequest.data = _request.data;
-    return this._client(axiosRequest);
+    return this._client.create({
+      method: method,
+      header: _request.headers
+    })(_request.uri, (0, _underscore.extend)(_request.query, _request.data));
   };
 
   _proto.response = function response(responseClass, _response) {
