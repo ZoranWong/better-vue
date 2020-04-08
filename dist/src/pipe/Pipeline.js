@@ -190,51 +190,86 @@ function () {
                     var _ref3 = (0, _asyncToGenerator2["default"])(
                     /*#__PURE__*/
                     _regenerator["default"].mark(function _callee4(passable) {
-                      var result;
+                      var p, result;
                       return _regenerator["default"].wrap(function _callee4$(_context4) {
                         while (1) {
                           switch (_context4.prev = _context4.next) {
                             case 0:
-                              if (!(_underscore["default"].isFunction(pipe) && !(0, _helpers.isClass)(pipe))) {
-                                _context4.next = 6;
+                              if (!(_underscore["default"].isFunction(pipe) && !_this2._canExcute(pipe))) {
+                                _context4.next = 16;
                                 break;
                               }
 
-                              _context4.next = 3;
+                              if (_this2._canExcute(pipe)) {
+                                _context4.next = 7;
+                                break;
+                              }
+
+                              _context4.next = 4;
                               return pipe(passable, stack);
 
-                            case 3:
+                            case 4:
                               return _context4.abrupt("return", _context4.sent);
 
-                            case 6:
-                              if (_underscore["default"].isString(pipe)) {
-                                pipe = _this2._container[pipe];
-                              } else if ((0, _helpers.isClass)(pipe)) {
-                                pipe = new pipe();
-                              }
-
                             case 7:
-                              if (!(typeof pipe[_this2._method] !== 'undefined')) {
-                                _context4.next = 13;
+                              p = new pipe();
+
+                              if (!(!_this2._canExcute(pipe) && _this2._canExcute(p))) {
+                                _context4.next = 12;
                                 break;
                               }
 
-                              _context4.next = 10;
-                              return pipe[_this2._method].apply(pipe, [passable, stack]);
-
-                            case 10:
-                              _context4.t0 = _context4.sent;
+                              pipe = p;
                               _context4.next = 14;
                               break;
 
-                            case 13:
-                              _context4.t0 = null;
+                            case 12:
+                              if (_this2._canExcute(pipe)) {
+                                _context4.next = 14;
+                                break;
+                              }
+
+                              throw new TypeError('there has a pipe object in pipeline which is not right type! ');
 
                             case 14:
+                              _context4.next = 21;
+                              break;
+
+                            case 16:
+                              if (!_underscore["default"].isString(pipe)) {
+                                _context4.next = 20;
+                                break;
+                              }
+
+                              pipe = _this2._container[pipe];
+                              _context4.next = 21;
+                              break;
+
+                            case 20:
+                              throw new TypeError('there has a pipe object in pipeline which is not right type! ');
+
+                            case 21:
+                              if (!(typeof pipe[_this2._method] !== 'undefined')) {
+                                _context4.next = 27;
+                                break;
+                              }
+
+                              _context4.next = 24;
+                              return pipe[_this2._method].apply(pipe, [passable, stack]);
+
+                            case 24:
+                              _context4.t0 = _context4.sent;
+                              _context4.next = 28;
+                              break;
+
+                            case 27:
+                              _context4.t0 = null;
+
+                            case 28:
                               result = _context4.t0;
                               return _context4.abrupt("return", result);
 
-                            case 16:
+                            case 30:
                             case "end":
                               return _context4.stop();
                           }
@@ -260,6 +295,10 @@ function () {
         };
       }()
     );
+  };
+
+  _proto._canExcute = function _canExcute(pipe) {
+    return this._method in pipe;
   };
 
   return Pipeline;

@@ -42,22 +42,36 @@ export default class Pipeline {
     _prepareDestination (destination) {
         return async (passable) => {
             return await destination(passable);
-        }
+        };
     }
 
     _carry () {
         return async (stack, pipe) => {
             return async (passable) => {
-                if (_.isFunction(pipe) && !isClass(pipe)) {
-                    return await pipe(passable, stack);
+                if (_.isFunction(pipe) && !this._canExcute(pipe)) {
+					if(!this._canExcute(pipe)){
+						return await pipe(passable, stack);
+					}else{
+						let p = new pipe();
+						if(!this._canExcute(pipe) && this._canExcute(p)){
+							pipe = p;
+						}else if(!this._canExcute(pipe)){
+							throw new TypeError('there has a pipe object in pipeline which is not right type! ');
+						}
+					}
+                    
                 } else if (_.isString(pipe)) {
                     pipe = this._container[pipe];
-                } else if(isClass(pipe)){
-                    pipe = new pipe();
+                } else {
+                    throw new TypeError('there has a pipe object in pipeline which is not right type! ');
                 }
                 let result = typeof pipe[this._method] !== 'undefined' ? await pipe[this._method].apply(pipe, [passable, stack]) : null;
                 return result;
-            }
-        }
+            };
+        };
     }
+	
+	_canExcute(pipe){
+		return this._method in pipe;
+	}
 }
