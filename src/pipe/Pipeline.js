@@ -48,7 +48,7 @@ export default class Pipeline {
     _carry () {
         return async (stack, pipe) => {
             return async (passable) => {
-                if (_.isFunction(pipe) && !this._canExcute(pipe)) {
+                if (_.isFunction(pipe)) {
 					if(!this._canExcute(pipe)){
 						return await pipe(passable, stack);
 					}else{
