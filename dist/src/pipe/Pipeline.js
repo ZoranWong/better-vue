@@ -200,20 +200,20 @@ function () {
                                 break;
                               }
 
-                              if (_this2._canExcute(pipe)) {
-                                _context4.next = 7;
+                              p = new pipe();
+
+                              if (!(!_this2._canExcute(pipe) && _this2._canExcute(p))) {
+                                _context4.next = 8;
                                 break;
                               }
 
-                              _context4.next = 4;
+                              _context4.next = 5;
                               return pipe(passable, stack);
 
-                            case 4:
+                            case 5:
                               return _context4.abrupt("return", _context4.sent);
 
-                            case 7:
-                              p = new pipe();
-
+                            case 8:
                               if (!(!_this2._canExcute(pipe) && _this2._canExcute(p))) {
                                 _context4.next = 12;
                                 break;

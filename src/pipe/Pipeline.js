@@ -49,10 +49,10 @@ export default class Pipeline {
         return async (stack, pipe) => {
             return async (passable) => {
                 if (_.isFunction(pipe)) {
-					if(!this._canExcute(pipe)){
+					let p = new pipe();
+					if(!this._canExcute(pipe) && this._canExcute(p)){
 						return await pipe(passable, stack);
 					}else{
-						let p = new pipe();
 						if(!this._canExcute(pipe) && this._canExcute(p)){
 							pipe = p;
 						}else if(!this._canExcute(pipe)){
