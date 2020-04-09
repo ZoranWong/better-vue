@@ -202,7 +202,7 @@ function () {
 
                               p = new pipe();
 
-                              if (!(!_this2._canExcute(pipe) && _this2._canExcute(p))) {
+                              if (!(!_this2._canExcute(pipe) && !_this2._canExcute(p))) {
                                 _context4.next = 8;
                                 break;
                               }
