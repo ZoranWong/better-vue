@@ -2,7 +2,7 @@ import AppAdapter from "../contracts/AppAdapter";
 import {ComponentOptions} from 'vue';
 import Vue from 'vue';
 import {Store} from 'vuex';
-import {extend} from 'underscore';
+import {extend,isArray} from 'underscore';
 import Router from '../routes/Router';
 import Application from '../Application';
 import Vuex from "vuex";
@@ -88,36 +88,76 @@ export default class VueAppAdapter extends AppAdapter {
     }
 
     beforeMount (vue) {
-        this._beforeMount && this._beforeMount.call(vue);
+		if(!isArray(this._beforeMount)) {
+			this._beforeMount = [this._beforeMount];
+		}
+		this._beforeMount.forEach((callback) => {
+			callback && callback.call(this._page)
+		})
     }
 
     mounted (vue) {
-        this._mounted && this._mounted.call(vue);
+		if(!isArray(this._mounted)) {
+			this._mounted = [this._mounted];
+		}
+		this._mounted.forEach((callback) => {
+			callback && callback.call(this._page)
+		})
     }
 
     beforeCreate () {
-        this._beforeCreate && this._beforeCreate.call();
+        if(!isArray(this._beforeCreate)) {
+			this._beforeCreate = [this._beforeCreate];
+		}
+		this._beforeCreate.forEach((callback) => {
+			callback && callback.call(this._page)
+		})
     }
 
     created (vue) {
         this._page = vue;
-        this._created && this._created.call(vue);
+		if(!isArray(this._created)) {
+			this._created = [this._created];
+		}
+		this._created.forEach((callback) => {
+			callback && callback.call(this._page)
+		})
     }
 
     beforeUpdate (vue) {
-        this._beforeUpdate && this._beforeUpdate.call(vue);
+		if(!isArray(this._beforeUpdate)) {
+			this._beforeUpdate = [this._beforeUpdate];
+		}
+		this._beforeUpdate.forEach((callback) => {
+			callback && callback.call(this._page)
+		})
     }
 
     updated (vue) {
-        this._updated && this._updated.call(vue);
+		if(!isArray(this._updated)) {
+			this._updated = [this._updated];
+		}
+		this._updated.forEach((callback) => {
+			callback && callback.call(this._page)
+		})
     }
 
     beforeDestroy (vue) {
-        this._beforeDestroy && this.beforeDestroy.call(vue)
+		if(!isArray(this._beforeDestroy)) {
+			this._beforeDestroy = [this._beforeDestroy];
+		}
+		this._beforeDestroy.forEach((callback) => {
+			callback && callback.call(this._page)
+		})
     }
 
     destroyed (vue) {
-        this._destroyed && this._destroyed.call(vue);
+		if(!isArray(this._destroyed)) {
+			this._destroyed = [this._destroyed];
+		}
+		this._destroyed.forEach((callback) => {
+			callback && callback.call(this._page)
+		})
     }
 
     mixin (mixins) {

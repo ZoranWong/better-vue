@@ -130,36 +130,101 @@ function (_AppAdapter) {
   };
 
   _proto.beforeMount = function beforeMount(vue) {
-    this._beforeMount && this._beforeMount.call(vue);
+    var _this2 = this;
+
+    if (!(0, _underscore.isArray)(this._beforeMount)) {
+      this._beforeMount = [this._beforeMount];
+    }
+
+    this._beforeMount.forEach(function (callback) {
+      callback && callback.call(_this2._page);
+    });
   };
 
   _proto.mounted = function mounted(vue) {
-    this._mounted && this._mounted.call(vue);
+    var _this3 = this;
+
+    if (!(0, _underscore.isArray)(this._mounted)) {
+      this._mounted = [this._mounted];
+    }
+
+    this._mounted.forEach(function (callback) {
+      callback && callback.call(_this3._page);
+    });
   };
 
   _proto.beforeCreate = function beforeCreate() {
-    this._beforeCreate && this._beforeCreate.call();
+    var _this4 = this;
+
+    if (!(0, _underscore.isArray)(this._beforeCreate)) {
+      this._beforeCreate = [this._beforeCreate];
+    }
+
+    this._beforeCreate.forEach(function (callback) {
+      callback && callback.call(_this4._page);
+    });
   };
 
   _proto.created = function created(vue) {
+    var _this5 = this;
+
     this._page = vue;
-    this._created && this._created.call(vue);
+
+    if (!(0, _underscore.isArray)(this._created)) {
+      this._created = [this._created];
+    }
+
+    this._created.forEach(function (callback) {
+      callback && callback.call(_this5._page);
+    });
   };
 
   _proto.beforeUpdate = function beforeUpdate(vue) {
-    this._beforeUpdate && this._beforeUpdate.call(vue);
+    var _this6 = this;
+
+    if (!(0, _underscore.isArray)(this._beforeUpdate)) {
+      this._beforeUpdate = [this._beforeUpdate];
+    }
+
+    this._beforeUpdate.forEach(function (callback) {
+      callback && callback.call(_this6._page);
+    });
   };
 
   _proto.updated = function updated(vue) {
-    this._updated && this._updated.call(vue);
+    var _this7 = this;
+
+    if (!(0, _underscore.isArray)(this._updated)) {
+      this._updated = [this._updated];
+    }
+
+    this._updated.forEach(function (callback) {
+      callback && callback.call(_this7._page);
+    });
   };
 
   _proto.beforeDestroy = function beforeDestroy(vue) {
-    this._beforeDestroy && this.beforeDestroy.call(vue);
+    var _this8 = this;
+
+    if (!(0, _underscore.isArray)(this._beforeDestroy)) {
+      this._beforeDestroy = [this._beforeDestroy];
+    }
+
+    this._beforeDestroy.forEach(function (callback) {
+      callback && callback.call(_this8._page);
+    });
   };
 
   _proto.destroyed = function destroyed(vue) {
-    this._destroyed && this._destroyed.call(vue);
+    var _this9 = this;
+
+    if (!(0, _underscore.isArray)(this._destroyed)) {
+      this._destroyed = [this._destroyed];
+    }
+
+    this._destroyed.forEach(function (callback) {
+      callback && callback.call(_this9._page);
+    });
   };
 
   _proto.mixin = function mixin(mixins) {

@@ -136,7 +136,7 @@ function (_Service) {
               this._middleware.apply(this, request._middlewares);
 
               if (!this._httpClient && this._httpAdapter) {
-                // console.log('--------------- 22222 -----------', (0, _helpers.isClass)(this._httpAdapter), this._httpAdapter);
+                console.log('--------------- 22222 -----------', (0, _helpers.isClass)(this._httpAdapter), this._httpAdapter);
                 this._httpClient = new this._httpAdapter(this._config);
               }
 
